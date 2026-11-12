@@ -2,98 +2,59 @@
 <html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juste une part, merci ! — Pâtisserie Haute Couture par Élodie</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#FAF6F0',
-              100: '#F5ECE0',
-              200: '#EBD8C3',
-              300: '#D9BE9F',
-              400: '#C49D79',
-              500: '#A97B55',
-              600: '#8A5C39',
-              700: '#6B4226',
-              800: '#4F2D17',
-              900: '#341A0B',
-              950: '#1F0D04'
-            },
-            terracotta: {
-              DEFAULT: '#C15C3D',
-              light: '#E27D5F',
-              dark: '#9E3F23'
-            },
-            gold: {
-              DEFAULT: '#D4AF37',
-              light: '#F3E5AB'
-            }
-          },
-          fontFamily: {
-            display: ['"Playfair Display"', 'serif'],
-            serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Juste une part, merci ! | Pâtisserie maison par Élodie</title>
+  <meta name="description" content="Pâtisserie française traditionnelle et gâteaux sur mesure faits maison par Élodie : tartes, choux, entremets, gâteaux d'anniversaire. Uniquement sur commande, retrait sur rendez-vous.">
+  <meta name="theme-color" content="#FAF6F0">
+  <link rel="canonical" href="https://kmauger18.github.io/Juste-une-part-merci-/">
 
-  <style>
-    .page-view {
-      display: none;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-    .page-view.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #F5ECE0;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #A97B55;
-      border-radius: 4px;
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-    }
-    .hero-gradient {
-      background: linear-gradient(135deg, #FAF6F0 0%, #F5ECE0 50%, #EBD8C3 100%);
-    }
-    .step-badge.active {
-      background-color: #C15C3D;
-      color: #ffffff;
-      border-color: #C15C3D;
-    }
-    .step-badge.completed {
-      background-color: #4F2D17;
-      color: #ffffff;
-      border-color: #4F2D17;
-    }
-  </style>
+  <!-- Partage sur les réseaux sociaux -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Juste une part, merci !">
+  <meta property="og:title" content="Juste une part, merci ! | Pâtisserie maison par Élodie">
+  <meta property="og:description" content="Tartes, choux, entremets et gâteaux sur mesure, faits maison et sur commande.">
+  <meta property="og:url" content="https://kmauger18.github.io/Juste-une-part-merci-/">
+  <meta property="og:image" content="https://kmauger18.github.io/Juste-une-part-merci-/img/partage.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Icônes d'onglet -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Polices hébergées sur le site (chargement prioritaire des deux principales) -->
+  <link rel="preload" href="fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Styles compilés (voir css/source.css) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Icônes (chargées sans bloquer l'affichage) -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+  <!-- Fiche pour Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Juste une part, merci !",
+    "description": "Pâtisserie française traditionnelle et gâteaux sur mesure faits maison par Élodie Mauger.",
+    "url": "https://kmauger18.github.io/Juste-une-part-merci-/",
+    "image": "https://kmauger18.github.io/Juste-une-part-merci-/img/partage.jpg",
+    "logo": "https://kmauger18.github.io/Juste-une-part-merci-/img/icone-512.png",
+    "telephone": "+33681174592",
+    "founder": { "@type": "Person", "name": "Élodie Mauger" },
+    "servesCuisine": "Pâtisserie française",
+    "priceRange": "€€"
+  }
+  </script>
 </head>
 <body class="bg-brand-50 text-brand-900 font-sans antialiased min-h-screen flex flex-col selection:bg-terracotta selection:text-white">
 
@@ -111,33 +72,36 @@
       <div class="flex items-center justify-between h-20">
         
         <!-- Mobile Toggle Button -->
-        <button id="mobile-menu-btn" class="lg:hidden text-brand-900 p-2 hover:text-terracotta focus:outline-none">
+        <button id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-brand-900 p-2 hover:text-terracotta focus:outline-none">
           <i class="fa-solid fa-bars text-2xl"></i>
         </button>
 
         <!-- Logo -->
-        <button onclick="navigateTo('accueil')" class="flex flex-col items-center group text-center">
-          <span class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-brand-900 group-hover:text-terracotta transition-colors">
-            Juste une part, merci !
+        <a href="#accueil" class="flex items-center gap-2.5 sm:gap-3 group min-w-0" aria-label="Juste une part, merci ! Accueil">
+          <img src="img/logo-icone.svg" alt="" width="52" height="52" class="w-11 h-11 sm:w-[52px] sm:h-[52px] flex-none rounded-xl shadow-sm group-hover:-rotate-6 transition-transform">
+          <span class="flex flex-col min-w-0">
+            <span class="font-display text-xl sm:text-2xl xl:text-3xl font-bold tracking-tight text-brand-900 group-hover:text-terracotta transition-colors leading-tight whitespace-nowrap">
+              Juste une part, <span class="text-terracotta">merci !</span>
+            </span>
+            <span class="hidden sm:block font-serif italic text-xs tracking-widest text-brand-600 uppercase">
+              Pâtisserie maison par Élodie
+            </span>
           </span>
-          <span class="font-serif italic text-xs tracking-widest text-brand-600 uppercase -mt-0.5">
-            Haute Pâtisserie Artisanale par Élodie
-          </span>
-        </button>
+        </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex space-x-7 text-sm font-semibold tracking-wide">
+        <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-semibold tracking-wide whitespace-nowrap" aria-label="Navigation principale">
           <button onclick="navigateTo('accueil')" data-page-link="accueil" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">Accueil</button>
-          <button onclick="navigateTo('patisseries')" data-page-link="patisseries" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">La Carte des Gâteaux</button>
+          <button onclick="navigateTo('patisseries')" data-page-link="patisseries" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">La carte</button>
           <button onclick="navigateTo('sur-mesure')" data-page-link="sur-mesure" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors flex items-center gap-1.5 text-terracotta font-bold">
-            <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> Créateur Sur-Mesure
+            <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> Sur mesure
           </button>
-          <button onclick="navigateTo('histoire')" data-page-link="histoire" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">Mon Histoire & Engagements</button>
-          <button onclick="navigateTo('contact')" data-page-link="contact" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">Contact & Retrait</button>
+          <button onclick="navigateTo('histoire')" data-page-link="histoire" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">Mon histoire</button>
+          <button onclick="navigateTo('contact')" data-page-link="contact" class="nav-btn py-1 border-b-2 border-transparent hover:text-terracotta transition-colors">Contact</button>
         </nav>
 
         <!-- Cart Button -->
-        <button id="open-cart-btn" class="relative bg-brand-800 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md transition-all flex items-center gap-2 group">
+        <button id="open-cart-btn" aria-label="Ouvrir le panier" class="relative bg-brand-800 hover:bg-brand-700 text-white p-3 rounded-2xl shadow-md transition-all flex items-center gap-2 group">
           <i class="fa-solid fa-bag-shopping text-base group-hover:scale-110 transition-transform"></i>
           <span class="hidden sm:inline text-xs font-bold uppercase tracking-wider">Panier</span>
           <span id="cart-badge-count" class="bg-terracotta text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[20px] text-center">0</span>
@@ -210,7 +174,7 @@
             <div class="lg:col-span-5 relative">
               <div class="relative mx-auto max-w-md lg:max-w-none">
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                  <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=1000" alt="Saint Honoré Gourmand" class="w-full h-[460px] object-cover">
+                  <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=75&w=800" srcset="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=75&w=500 500w, https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=75&w=800 800w, https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=75&w=1100 1100w" sizes="(min-width:1024px) 40vw, 100vw" alt="Saint-Honoré vanille et caramel" width="800" height="460" fetchpriority="high" decoding="async" class="w-full h-[360px] sm:h-[460px] object-cover">
                   <div class="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
                     <span class="bg-gold text-brand-950 text-xs font-extrabold uppercase px-3 py-1 rounded-full w-fit mb-2">Signature de l'Atelier</span>
                     <h3 class="font-display text-2xl font-bold">Saint-Honoré Vanille Bourbon & Caramel</h3>
@@ -218,7 +182,7 @@
                   </div>
                 </div>
 
-                <div class="absolute -bottom-6 -left-6 glass-card p-5 rounded-2xl shadow-2xl border border-white max-w-xs flex items-center gap-4">
+                <div class="hidden sm:flex absolute -bottom-6 -left-6 glass-card p-5 rounded-2xl shadow-2xl border border-white max-w-xs flex items-center gap-4">
                   <div class="w-12 h-12 rounded-full bg-brand-800 text-white flex items-center justify-center font-display text-xl font-bold">
                     É
                   </div>
@@ -358,7 +322,7 @@
           </p>
 
           <!-- Step Progress Indicator -->
-          <div class="flex justify-between max-w-2xl mx-auto mt-8 border-b border-brand-200 pb-4 text-xs font-bold">
+          <div class="flex justify-between gap-4 max-w-2xl mx-auto mt-8 border-b border-brand-200 pb-4 text-xs font-bold overflow-x-auto whitespace-nowrap">
             <span id="step-nav-1" class="step-nav text-terracotta border-b-2 border-terracotta pb-1">1. Occasion</span>
             <span id="step-nav-2" class="step-nav text-brand-400 pb-1">2. Portions</span>
             <span id="step-nav-3" class="step-nav text-brand-400 pb-1">3. Base</span>
@@ -550,7 +514,7 @@
             <div class="bg-brand-950 p-4 rounded-2xl border border-brand-800 text-center space-y-1">
               <span class="text-xs uppercase tracking-wider text-brand-400 block font-semibold">Prix Estimé</span>
               <span id="custom-total-price" class="font-display text-3xl font-bold text-gold">48.00 €</span>
-              <span class="text-[10px] text-brand-400 block">Soit ~6.00 € / part</span>
+              <span id="custom-price-per-part" class="text-[10px] text-brand-400 block">Soit environ 6,00 € la part</span>
             </div>
 
             <button id="add-custom-cake-btn" class="w-full py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
@@ -573,7 +537,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white p-8 sm:p-12 rounded-3xl border border-brand-200 shadow-sm">
           <div class="relative">
-            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" alt="Élodie dans son atelier" class="rounded-2xl shadow-xl w-full h-96 object-cover">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=75&w=700" alt="Pâtisseries en préparation" width="700" height="384" loading="lazy" decoding="async" class="rounded-2xl shadow-xl w-full h-96 object-cover">
             <div class="absolute -bottom-4 -right-4 bg-brand-900 text-white p-4 rounded-2xl text-xs font-serif italic shadow-lg">
               « Chaque gâteau a sa propre histoire. »
             </div>
@@ -760,13 +724,110 @@
       </section>
     </div>
 
+    <!-- ==================== PAGE PRODUIT ==================== -->
+    <div id="page-produit" class="page-view">
+      <section class="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Fil d'Ariane" class="text-xs sm:text-sm text-brand-600 mb-6 flex flex-wrap items-center gap-2">
+          <a href="#accueil" class="hover:text-terracotta">Accueil</a>
+          <i class="fa-solid fa-chevron-right text-[9px] text-brand-400"></i>
+          <a href="#patisseries" class="hover:text-terracotta">La carte</a>
+          <i class="fa-solid fa-chevron-right text-[9px] text-brand-400"></i>
+          <span id="pp-crumb" class="font-semibold text-brand-900"></span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-start">
+          <!-- Visuel -->
+          <div class="lg:sticky lg:top-28 space-y-4">
+            <div class="relative rounded-3xl overflow-hidden bg-brand-100 border border-brand-200 shadow-xl aspect-[4/3]">
+              <img id="pp-image" src="" alt="" width="1000" height="750" class="w-full h-full object-cover" decoding="async">
+              <span id="pp-badge" class="absolute top-4 left-4 bg-brand-950/85 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-full"></span>
+            </div>
+            <ul class="grid grid-cols-3 gap-3 text-center text-[11px] sm:text-xs font-semibold text-brand-700">
+              <li class="bg-white border border-brand-200 rounded-2xl p-3 flex flex-col items-center gap-1"><i class="fa-solid fa-hand-sparkles text-terracotta text-base"></i><span>Fait main</span></li>
+              <li class="bg-white border border-brand-200 rounded-2xl p-3 flex flex-col items-center gap-1"><i class="fa-solid fa-calendar-check text-terracotta text-base"></i><span>Sur commande</span></li>
+              <li class="bg-white border border-brand-200 rounded-2xl p-3 flex flex-col items-center gap-1"><i class="fa-solid fa-store text-terracotta text-base"></i><span>Retrait sur rendez-vous</span></li>
+            </ul>
+          </div>
+
+          <!-- Infos -->
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <span id="pp-cat" class="text-xs font-bold uppercase tracking-widest text-terracotta"></span>
+              <h1 id="pp-title" class="font-display text-3xl sm:text-5xl font-bold text-brand-950 leading-tight"></h1>
+              <p id="pp-tagline" class="font-serif italic text-xl text-brand-600"></p>
+            </div>
+
+            <div class="flex items-end gap-3">
+              <span id="pp-price" class="font-display text-4xl font-bold text-brand-900"></span>
+              <span id="pp-price-note" class="text-sm text-brand-500 pb-1.5"></span>
+            </div>
+
+            <p id="pp-desc" class="text-brand-700 leading-relaxed"></p>
+
+            <div id="pp-formats-wrap" class="space-y-2">
+              <span class="block text-xs font-bold uppercase tracking-wider text-brand-700">Taille</span>
+              <div id="pp-formats" class="flex flex-wrap gap-2" role="radiogroup" aria-label="Taille du gâteau"></div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="flex items-center bg-white border border-brand-300 rounded-2xl">
+                <button type="button" id="pp-minus" class="w-11 h-12 text-lg font-bold text-brand-800 hover:text-terracotta" aria-label="Retirer un">−</button>
+                <span id="pp-qty" class="w-8 text-center font-bold" aria-live="polite">1</span>
+                <button type="button" id="pp-plus" class="w-11 h-12 text-lg font-bold text-brand-800 hover:text-terracotta" aria-label="Ajouter un">+</button>
+              </div>
+              <button type="button" id="pp-add" class="flex-1 min-w-[200px] py-3.5 px-6 bg-terracotta hover:bg-terracotta-dark text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-bag-shopping"></i> <span>Ajouter au panier</span>
+              </button>
+            </div>
+            <p class="text-xs text-brand-600"><i class="fa-regular fa-clock mr-1 text-terracotta"></i> <span id="pp-delay"></span></p>
+
+            <div class="divide-y divide-brand-200 border-y border-brand-200">
+              <details class="group py-4" open>
+                <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-900 text-sm">Ingrédients <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i></summary>
+                <p id="pp-ingredients" class="mt-3 text-sm text-brand-700 leading-relaxed"></p>
+              </details>
+              <details class="group py-4" open>
+                <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-900 text-sm">Allergènes <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i></summary>
+                <div id="pp-allergens" class="mt-3 flex flex-wrap gap-2"></div>
+                <p class="mt-3 text-xs text-brand-500">Préparé dans une cuisine qui utilise aussi gluten, œufs, lait et fruits à coque : des traces sont possibles.</p>
+              </details>
+              <details class="group py-4">
+                <summary class="flex justify-between items-center cursor-pointer font-bold text-brand-900 text-sm">Conservation et service <i class="fa-solid fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i></summary>
+                <p id="pp-storage" class="mt-3 text-sm text-brand-700 leading-relaxed"></p>
+              </details>
+            </div>
+
+            <a href="#sur-mesure" class="flex items-center justify-between gap-4 bg-brand-900 text-brand-50 rounded-2xl p-5 hover:bg-brand-800 transition-colors">
+              <span><strong class="block text-white">Envie d'une version personnalisée ?</strong><span class="text-sm text-brand-300">Taille, saveurs, inscription : composez votre gâteau sur mesure.</span></span>
+              <i class="fa-solid fa-arrow-right text-gold"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Suggestions -->
+        <div class="mt-16 sm:mt-20">
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-900 mb-6">Vous aimerez aussi</h2>
+          <div id="pp-related" class="grid grid-cols-1 sm:grid-cols-3 gap-6"></div>
+        </div>
+      </section>
+
+      <!-- Barre d'achat fixe sur mobile -->
+      <div id="pp-sticky" class="lg:hidden fixed inset-x-0 bottom-0 z-30 bg-white/95 backdrop-blur border-t border-brand-200 px-4 pt-3 flex items-center gap-3 shadow-2xl" style="padding-bottom:calc(.75rem + env(safe-area-inset-bottom,0px))">
+        <div class="min-w-0 flex-1">
+          <span id="pp-sticky-title" class="block text-xs font-semibold text-brand-600 truncate"></span>
+          <span id="pp-sticky-price" class="font-display text-xl font-bold text-brand-900"></span>
+        </div>
+        <button type="button" id="pp-sticky-add" class="px-5 py-3 bg-terracotta text-white font-bold rounded-2xl text-sm shadow-md">Ajouter</button>
+      </div>
+    </div>
+
   </main>
 
   <!-- FOOTER -->
   <footer class="bg-brand-950 text-brand-300 border-t border-brand-900 py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-sm">
       <div class="space-y-3">
-        <h4 class="font-display text-xl font-bold text-white">Juste une part, merci !</h4>
+        <div class="flex items-center gap-3"><img src="img/logo-icone.svg" alt="" width="44" height="44" loading="lazy" class="w-11 h-11 rounded-xl"><h4 class="font-display text-xl font-bold text-white">Juste une part, merci !</h4></div>
         <p class="text-xs text-brand-400">Pâtisserie artisanale d'excellence créée et animée par Élodie.</p>
       </div>
       <div>
@@ -800,7 +861,7 @@
   </footer>
 
   <!-- CART DRAWER MODAL -->
-  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+  <div id="cart-drawer" role="dialog" aria-modal="true" aria-label="Votre panier" class="fixed inset-0 z-50 overflow-hidden hidden">
     <div id="cart-backdrop" class="absolute inset-0 bg-brand-950/60 backdrop-blur-sm"></div>
     <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
       <div class="pointer-events-auto w-screen max-w-md bg-brand-50 shadow-2xl flex flex-col justify-between border-l border-brand-200">
@@ -809,7 +870,7 @@
           <h3 class="font-display text-xl font-bold text-brand-900 flex items-center gap-2">
             <i class="fa-solid fa-bag-shopping text-terracotta"></i> Votre Panier Gourmand
           </h3>
-          <button id="close-cart-btn" class="text-brand-600 hover:text-brand-900 text-xl">
+          <button id="close-cart-btn" aria-label="Fermer le panier" class="text-brand-600 hover:text-brand-900 text-xl">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -845,9 +906,9 @@
   </div>
 
   <!-- CHECKOUT MODAL -->
-  <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/70 backdrop-blur-sm hidden">
+  <div id="checkout-modal" role="dialog" aria-modal="true" aria-label="Finaliser la commande" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-6 sm:p-8 shadow-2xl relative border border-brand-200 space-y-6">
-      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-brand-400 hover:text-brand-900 text-xl">
+      <button onclick="closeCheckoutModal()" aria-label="Fermer" class="absolute top-4 right-4 text-brand-400 hover:text-brand-900 text-xl">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
@@ -906,38 +967,6 @@
     </div>
   </div>
 
-  <!-- PRODUCT DETAIL MODAL -->
-  <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/70 backdrop-blur-sm hidden">
-    <div class="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl relative border border-brand-200">
-      <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/80 text-brand-900 flex items-center justify-center shadow">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <img id="modal-image" src="" alt="" class="w-full h-64 object-cover">
-      
-      <div class="p-6 space-y-4">
-        <div class="flex justify-between items-start">
-          <div>
-            <span id="modal-cat" class="text-xs font-bold uppercase tracking-wider text-terracotta"></span>
-            <h3 id="modal-title" class="font-display text-2xl font-bold text-brand-950"></h3>
-          </div>
-          <span id="modal-price" class="font-display text-2xl font-bold text-brand-900 bg-brand-100 px-3 py-1 rounded-xl"></span>
-        </div>
-
-        <p id="modal-desc" class="text-brand-700 text-sm leading-relaxed"></p>
-
-        <div class="border-t border-brand-200 pt-3">
-          <span class="text-xs font-bold uppercase text-brand-500 block mb-1">Ingrédients Nobles & Allergènes :</span>
-          <p id="modal-ingredients" class="text-xs text-brand-600 italic"></p>
-        </div>
-
-        <button id="modal-add-btn" class="w-full py-3.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-2xl transition-all shadow-md flex items-center justify-center gap-2">
-          <i class="fa-solid fa-cart-plus"></i> Ajouter au Panier
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- TOAST NOTIFICATION -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 bg-brand-950 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300">
     <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
@@ -974,7 +1003,7 @@
         category: 'choux',
         price: 9.50,
         image: 'https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&q=80&w=600',
-        description: 'Deux grands éclairs garnies d\'une crème pâtissière à la vanille de Madagascar et cœur caramel coulant.',
+        description: 'Deux grands éclairs garnis d\'une crème pâtissière à la vanille de Madagascar et cœur caramel coulant.',
         ingredients: 'Gousses de vanille entière, Caramel salé, Pâte à choux artisanale.',
         badge: 'Format Duo'
       },
@@ -994,7 +1023,7 @@
         category: 'entremets',
         price: 34.00,
         image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600',
-        description: 'Mousse légère au chocolat Valrhona Guanaja 70%, biscuit dacquoise et croustillant praliné feuiiletine.',
+        description: 'Mousse légère au chocolat Valrhona Guanaja 70%, biscuit dacquoise et croustillant praliné feuilletine.',
         ingredients: 'Chocolat 70% pure origine, Crème fleurette, Praliné amande-noisette.',
         badge: 'Gourmand'
       },
@@ -1004,7 +1033,7 @@
         category: 'entremets',
         price: 29.00,
         image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=600',
-        description: 'Trois couches de feuilletage croustillant caramélisé et diplômate onctueuse à la gousse de vanille.',
+        description: 'Trois couches de feuilletage croustillant caramélisé et crème diplomate onctueuse à la gousse de vanille.',
         ingredients: 'Feuilletage inversé, Vanille de Tahiti, Beurre sec.',
         badge: 'Tradition'
       },
@@ -1032,8 +1061,35 @@
       }
     ];
 
+    // DÉTAILS DES PAGES PRODUITS
+    // formats : tailles proposées (mult = coefficient appliqué au prix de base)
+    const TAILLES = [
+      { label: '4 parts', mult: 0.6 },
+      { label: '6 à 8 parts', mult: 1 },
+      { label: '10 à 12 parts', mult: 1.5 }
+    ];
+    const DETAILS = {
+      'tat-1': { tagline: 'La tarte renversée, comme à la maison', allergenes: ['Gluten', 'Lait'], formats: TAILLES, conservation: 'Au frais, jusqu\'à 2 jours. À sortir 30 minutes avant de servir, ou à tiédir quelques minutes au four : délicieuse avec une boule de glace vanille ou de la crème crue.', delai: 'À commander 48 h à l\'avance.' },
+      'pbr-2': { tagline: 'La couronne au praliné noisette', allergenes: ['Gluten', 'Œufs', 'Lait', 'Fruits à coque'], formats: TAILLES, conservation: 'Au réfrigérateur, à consommer dans les 24 h. À sortir 15 minutes avant de servir.', delai: 'À commander 48 h à l\'avance.' },
+      'ecl-3': { tagline: 'Un à la vanille, un au caramel', allergenes: ['Gluten', 'Œufs', 'Lait'], formats: null, unite: 'le duo', conservation: 'Au réfrigérateur, à déguster le jour même pour un choux bien croustillant.', delai: 'À commander 24 h à l\'avance.' },
+      'cit-4': { tagline: 'Acidulée, fondante, meringue dorée', allergenes: ['Gluten', 'Œufs', 'Lait'], formats: TAILLES, conservation: 'Au réfrigérateur, jusqu\'à 2 jours. La meringue est meilleure le premier jour.', delai: 'À commander 48 h à l\'avance.' },
+      'ent-5': { tagline: 'Pour les amoureux de chocolat', allergenes: ['Gluten', 'Œufs', 'Lait', 'Fruits à coque', 'Soja'], formats: TAILLES, conservation: 'Au réfrigérateur, jusqu\'à 3 jours. À sortir 20 minutes avant de servir pour une mousse bien fondante.', delai: 'À commander 72 h à l\'avance.' },
+      'mil-6': { tagline: 'Feuilletage croustillant et vanille', allergenes: ['Gluten', 'Œufs', 'Lait'], formats: TAILLES, conservation: 'Au réfrigérateur, à consommer dans les 24 h pour garder le feuilletage croustillant. Coupez-le avec un couteau à dents.', delai: 'À commander 48 h à l\'avance.' },
+      'mac-7': { tagline: 'Six parfums, douze bouchées', allergenes: ['Œufs', 'Lait', 'Fruits à coque'], formats: null, unite: 'le coffret de 12', conservation: 'Au réfrigérateur dans leur boîte, jusqu\'à 4 jours. Ils sont encore meilleurs le lendemain.', delai: 'À commander 72 h à l\'avance.' },
+      'pav-8': { tagline: 'Meringue croquante et fruits frais', allergenes: ['Œufs', 'Lait'], formats: TAILLES, conservation: 'Au réfrigérateur, à consommer le jour même : la meringue ramollit au contact de la crème.', delai: 'À commander 48 h à l\'avance.' }
+    };
+    const CATEGORIES = { tartes: 'Tartes artisanales', choux: 'Choux & éclairs', entremets: 'Entremets classiques', mignardises: 'Macarons & douceurs', glutenfree: 'Sans gluten' };
+    const PAGE_TITRES = { accueil: 'Pâtisserie maison par Élodie', patisseries: 'La carte des gâteaux', 'sur-mesure': 'Gâteau sur mesure', histoire: 'Mon histoire', contact: 'Contact et retrait' };
+    const NOM_SITE = 'Juste une part, merci !';
+
+    // Image Unsplash à la bonne largeur
+    function imgUrl(url, w) { return url.replace(/([?&])w=\d+/, '$1w=' + w); }
+    function echapper(t) { return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+    function prix(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
+
     // GLOBAL STATE
-    let cart = JSON.parse(localStorage.getItem('elodie_cart')) || [];
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('elodie_cart')) || []; } catch (e) { cart = []; }
     let promoDiscountApplied = false;
     let selectedModalProduct = null;
     let currentBuilderStep = 1;
@@ -1053,6 +1109,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       renderHomePageFeatured();
       renderCatalogGrid();
+      afficherRoute(false);
       updateCartUI();
       setupEventListeners();
       
@@ -1063,102 +1120,149 @@
       document.getElementById('pickup-date-input').value = tomorrow.toISOString().split('T')[0];
     });
 
-    // SPA ROUTER
+    // NAVIGATION (adresse #page : le bouton retour et les liens partagés fonctionnent)
     function navigateTo(pageId) {
-      document.querySelectorAll('.page-view').forEach(view => {
-        view.classList.remove('active');
-      });
-      
-      const target = document.getElementById(`page-${pageId}`);
-      if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      // Update Nav active style
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        if (btn.getAttribute('data-page-link') === pageId) {
-          btn.classList.add('border-terracotta', 'text-terracotta');
-          btn.classList.remove('border-transparent');
-        } else {
-          btn.classList.remove('border-terracotta', 'text-terracotta');
-          btn.classList.add('border-transparent');
-        }
-      });
-
-      // Hide mobile drawer
-      document.getElementById('mobile-menu').classList.add('hidden');
+      if (location.hash.slice(1) === pageId) afficherRoute(true);
+      else location.hash = pageId;
     }
 
-    // HOME FEATURED ITEMS RENDER
-    function renderHomePageFeatured() {
-      const container = document.getElementById('home-featured-grid');
-      const featured = CATALOG.slice(0, 3);
-      
-      container.innerHTML = featured.map(item => `
-        <div class="bg-white rounded-3xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
-          <div class="relative overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')">
-            <img src="${item.image}" alt="${item.title}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
-            <span class="absolute top-4 left-4 bg-brand-900/90 backdrop-blur-md text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider">
-              ${item.badge}
-            </span>
-          </div>
-          <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+    function afficherRoute(defiler) {
+      const route = decodeURIComponent(location.hash.slice(1)) || 'accueil';
+      let pageId = route;
+      if (route.startsWith('produit-')) {
+        const ok = renderProductPage(route.slice(8));
+        pageId = ok ? 'produit' : 'patisseries';
+      } else if (!document.getElementById('page-' + route)) {
+        pageId = 'accueil';
+      }
+
+      document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
+      document.getElementById('page-' + pageId).classList.add('active');
+      document.body.classList.toggle('page-produit-ouverte', pageId === 'produit');
+      if (pageId !== 'produit') document.title = `${PAGE_TITRES[pageId] || ''} | ${NOM_SITE}`;
+      if (defiler !== false) window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const actif = btn.getAttribute('data-page-link') === pageId || (pageId === 'produit' && btn.getAttribute('data-page-link') === 'patisseries');
+        btn.classList.toggle('border-terracotta', actif);
+        btn.classList.toggle('text-terracotta', actif);
+        btn.classList.toggle('border-transparent', !actif);
+        if (actif) btn.setAttribute('aria-current', 'page'); else btn.removeAttribute('aria-current');
+      });
+
+      document.getElementById('mobile-menu').classList.add('hidden');
+      document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', 'false');
+    }
+    window.addEventListener('hashchange', () => afficherRoute(true));
+
+    // CARTE PRODUIT (accueil, carte, suggestions)
+    function carteProduit(item, grand) {
+      const d = DETAILS[item.id] || {};
+      const prefixe = d.formats ? 'dès ' : '';
+      return `
+        <article class="bg-white rounded-3xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl transition-all flex flex-col group">
+          <a href="#produit-${item.id}" class="relative block overflow-hidden" aria-label="Voir ${echapper(item.title)}">
+            <img src="${imgUrl(item.image, 600)}" srcset="${imgUrl(item.image, 400)} 400w, ${imgUrl(item.image, 800)} 800w" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" alt="${echapper(item.title)}" width="600" height="400" loading="lazy" decoding="async" class="w-full ${grand ? 'h-56' : 'h-48'} object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-brand-950/85 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider">${echapper(item.badge)}</span>
+          </a>
+          <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between gap-4">
             <div>
-              <h3 class="font-display font-bold text-lg text-brand-950 cursor-pointer hover:text-terracotta" onclick="openDetailModal('${item.id}')">${item.title}</h3>
-              <p class="text-xs text-brand-600 mt-2 line-clamp-2">${item.description}</p>
+              <h3 class="font-display font-bold ${grand ? 'text-lg' : 'text-base'} text-brand-950"><a href="#produit-${item.id}" class="hover:text-terracotta">${echapper(item.title)}</a></h3>
+              <p class="text-xs text-brand-600 mt-2 line-clamp-2">${echapper(item.description)}</p>
             </div>
-            <div class="flex justify-between items-center pt-4 border-t border-brand-200">
-              <span class="font-display font-bold text-xl text-brand-900">${item.price.toFixed(2)} €</span>
-              <button onclick="addToCart('${item.id}', '${item.title.replace(/'/g, "\\'")}', ${item.price}, '${item.image}')" class="px-4 py-2 bg-brand-900 hover:bg-terracotta text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-md">
-                <i class="fa-solid fa-plus text-[10px]"></i> Commander
-              </button>
+            <div class="flex justify-between items-center gap-3 pt-4 border-t border-brand-200">
+              <span class="font-display font-bold text-lg text-brand-900"><span class="text-xs font-sans font-semibold text-brand-500">${prefixe}</span>${prix(item.price)}</span>
+              <a href="#produit-${item.id}" class="px-4 py-2 bg-brand-900 hover:bg-terracotta text-white font-bold rounded-xl text-xs transition-all">Voir le gâteau</a>
             </div>
           </div>
-        </div>
-      `).join('');
+        </article>`;
+    }
+
+    function renderHomePageFeatured() {
+      document.getElementById('home-featured-grid').innerHTML = CATALOG.slice(0, 3).map(item => carteProduit(item, true)).join('');
     }
 
     // CATALOG RENDER & FILTER
     function renderCatalogGrid() {
       const grid = document.getElementById('catalog-grid');
-      const searchQuery = document.getElementById('catalog-search').value.toLowerCase();
+      const searchQuery = document.getElementById('catalog-search').value.toLowerCase().trim();
       const activeCatBtn = document.querySelector('#category-filter-bar .cat-btn.active');
       const activeCat = activeCatBtn ? activeCatBtn.getAttribute('data-cat') : 'all';
 
-      let filtered = CATALOG.filter(item => {
+      const filtered = CATALOG.filter(item => {
         const matchesCat = activeCat === 'all' || item.category === activeCat || (activeCat === 'glutenfree' && item.isGlutenFree);
-        const matchesSearch = item.title.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery);
+        const matchesSearch = !searchQuery || (item.title + ' ' + item.description).toLowerCase().includes(searchQuery);
         return matchesCat && matchesSearch;
       });
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-12 text-center text-brand-500 text-sm font-semibold">Aucune pâtisserie ne correspond à votre recherche.</div>`;
-        return;
-      }
+      grid.innerHTML = filtered.length
+        ? filtered.map(item => carteProduit(item, false)).join('')
+        : `<div class="col-span-full py-12 text-center text-brand-500 text-sm font-semibold">Aucune pâtisserie ne correspond à votre recherche.</div>`;
+    }
 
-      grid.innerHTML = filtered.map(item => `
-        <div class="bg-white rounded-3xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
-          <div class="relative overflow-hidden cursor-pointer" onclick="openDetailModal('${item.id}')">
-            <img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
-            <span class="absolute top-3 left-3 bg-brand-950/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-              ${item.badge}
-            </span>
-          </div>
-          <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
-            <div>
-              <h3 class="font-display font-bold text-base text-brand-950 cursor-pointer hover:text-terracotta" onclick="openDetailModal('${item.id}')">${item.title}</h3>
-              <p class="text-xs text-brand-600 mt-1 line-clamp-2">${item.description}</p>
-            </div>
-            <div class="flex justify-between items-center pt-3 border-t border-brand-200">
-              <span class="font-bold text-brand-900 text-base">${item.price.toFixed(2)} €</span>
-              <button onclick="addToCart('${item.id}', '${item.title.replace(/'/g, "\\'")}', ${item.price}, '${item.image}')" class="px-3.5 py-2 bg-brand-100 hover:bg-brand-900 hover:text-white text-brand-900 font-bold rounded-xl text-xs transition-all">
-                Ajouter
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
+    // PAGE PRODUIT
+    let ppEtat = { produit: null, format: 1, qty: 1 };
+    function prixProduit() {
+      const d = DETAILS[ppEtat.produit.id] || {};
+      const mult = d.formats ? d.formats[ppEtat.format].mult : 1;
+      return Math.round(ppEtat.produit.price * mult * 2) / 2;
+    }
+    function majPrixProduit() {
+      const d = DETAILS[ppEtat.produit.id] || {};
+      const p = prixProduit();
+      document.getElementById('pp-price').textContent = prix(p);
+      document.getElementById('pp-price-note').textContent = d.formats ? d.formats[ppEtat.format].label : (d.unite || '');
+      document.getElementById('pp-qty').textContent = ppEtat.qty;
+      document.getElementById('pp-sticky-price').textContent = prix(p * ppEtat.qty);
+      document.querySelector('#pp-add span').textContent = `Ajouter au panier · ${prix(p * ppEtat.qty)}`;
+      document.querySelectorAll('#pp-formats button').forEach((b, i) => {
+        const actif = i === ppEtat.format;
+        b.setAttribute('aria-checked', actif);
+        b.className = 'px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all ' + (actif ? 'border-terracotta bg-terracotta/10 text-brand-950' : 'border-brand-200 bg-white text-brand-700 hover:border-brand-400');
+      });
+    }
+    function renderProductPage(id) {
+      const produit = CATALOG.find(p => p.id === id);
+      if (!produit) return false;
+      const d = DETAILS[id] || {};
+      ppEtat = { produit, format: d.formats ? 1 : 0, qty: 1 };
+
+      const img = document.getElementById('pp-image');
+      img.src = imgUrl(produit.image, 1000);
+      img.srcset = `${imgUrl(produit.image, 600)} 600w, ${imgUrl(produit.image, 1000)} 1000w, ${imgUrl(produit.image, 1400)} 1400w`;
+      img.sizes = '(min-width:1024px) 50vw, 100vw';
+      img.alt = produit.title;
+      document.getElementById('pp-badge').textContent = produit.badge;
+      document.getElementById('pp-crumb').textContent = produit.title;
+      document.getElementById('pp-cat').textContent = CATEGORIES[produit.category] || '';
+      document.getElementById('pp-title').textContent = produit.title;
+      document.getElementById('pp-tagline').textContent = d.tagline || '';
+      document.getElementById('pp-desc').textContent = produit.description;
+      document.getElementById('pp-ingredients').textContent = produit.ingredients;
+      document.getElementById('pp-storage').textContent = d.conservation || 'Au réfrigérateur, à consommer rapidement.';
+      document.getElementById('pp-delay').textContent = (d.delai || 'À commander 48 h à l\'avance.') + ' Retrait sur rendez-vous.';
+      document.getElementById('pp-sticky-title').textContent = produit.title;
+      document.getElementById('pp-allergens').innerHTML = (d.allergenes || []).map(a => `<span class="px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">${echapper(a)}</span>`).join('') || '<span class="text-sm text-brand-600">Aucun allergène majeur dans la recette.</span>';
+
+      const wrap = document.getElementById('pp-formats-wrap');
+      wrap.style.display = d.formats ? '' : 'none';
+      document.getElementById('pp-formats').innerHTML = (d.formats || []).map((f, i) => `<button type="button" role="radio" data-i="${i}">${f.label}</button>`).join('');
+
+      const autres = CATALOG.filter(p => p.id !== id);
+      autres.sort((x, y) => (y.category === produit.category) - (x.category === produit.category));
+      document.getElementById('pp-related').innerHTML = autres.slice(0, 3).map(item => carteProduit(item, false)).join('');
+
+      document.title = `${produit.title} | ${NOM_SITE}`;
+      majPrixProduit();
+      return true;
+    }
+    function ajouterProduitCourant() {
+      const d = DETAILS[ppEtat.produit.id] || {};
+      const taille = d.formats ? d.formats[ppEtat.format].label : '';
+      const id = ppEtat.produit.id + (taille ? '-' + ppEtat.format : '');
+      const titre = ppEtat.produit.title + (taille ? ` (${taille})` : '');
+      for (let i = 0; i < ppEtat.qty; i++) addToCart(id, titre, prixProduit(), imgUrl(ppEtat.produit.image, 200), true);
+      showToast(`${ppEtat.qty} × ${titre} ajouté au panier`);
     }
 
     // EVENT LISTENERS SETUP
@@ -1180,8 +1284,26 @@
       });
 
       // Mobile Menu Toggle
-      document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
+      document.getElementById('mobile-menu-btn').addEventListener('click', (e) => {
+        const ouvert = !document.getElementById('mobile-menu').classList.toggle('hidden');
+        e.currentTarget.setAttribute('aria-expanded', ouvert);
+      });
+
+      // Page produit : taille, quantité, ajout
+      document.getElementById('pp-formats').addEventListener('click', (e) => {
+        const b = e.target.closest('button[data-i]');
+        if (b) { ppEtat.format = +b.dataset.i; majPrixProduit(); }
+      });
+      document.getElementById('pp-minus').addEventListener('click', () => { ppEtat.qty = Math.max(1, ppEtat.qty - 1); majPrixProduit(); });
+      document.getElementById('pp-plus').addEventListener('click', () => { ppEtat.qty = Math.min(20, ppEtat.qty + 1); majPrixProduit(); });
+      document.getElementById('pp-add').addEventListener('click', ajouterProduitCourant);
+      document.getElementById('pp-sticky-add').addEventListener('click', ajouterProduitCourant);
+
+      // Échap ferme le panier et la fenêtre de commande
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        document.getElementById('cart-drawer').classList.add('hidden');
+        closeCheckoutModal();
       });
 
       // Cart Drawer Toggle
@@ -1202,8 +1324,8 @@
         const price = calculateCustomPrice();
         const customId = 'custom-' + Date.now();
         
-        addToCart(customId, title, price, 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&q=80&w=400');
-        showToast('Création sur-mesure ajoutée au panier !');
+        addToCart(customId, title, price, 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&q=80&w=200', true);
+        showToast('Création sur mesure ajoutée au panier !');
       });
 
       // Contact Form submit
@@ -1248,7 +1370,9 @@
       document.getElementById('sum-finish').textContent = customCakeState.finish.split('&')[0];
 
       const totalPrice = calculateCustomPrice();
-      document.getElementById('custom-total-price').textContent = `${totalPrice.toFixed(2)} €`;
+      document.getElementById('custom-total-price').textContent = prix(totalPrice);
+      const parPart = document.getElementById('custom-price-per-part');
+      if (parPart) parPart.textContent = `Soit environ ${prix(totalPrice / customCakeState.portions)} la part`;
     }
 
     function changeStep(dir) {
@@ -1279,7 +1403,7 @@
     }
 
     // CART MANAGEMENT
-    function addToCart(id, title, price, image) {
+    function addToCart(id, title, price, image, silencieux) {
       const existing = cart.find(item => item.id === id);
       if (existing) {
         existing.qty += 1;
@@ -1288,7 +1412,7 @@
       }
       saveCart();
       updateCartUI();
-      showToast('Ajouté au panier !');
+      if (!silencieux) showToast('Ajouté au panier !');
     }
 
     function updateQty(id, delta) {
@@ -1303,7 +1427,7 @@
     }
 
     function saveCart() {
-      localStorage.setItem('elodie_cart', JSON.stringify(cart));
+      try { localStorage.setItem('elodie_cart', JSON.stringify(cart)); } catch (e) {}
     }
 
     function updateCartUI() {
@@ -1322,25 +1446,25 @@
         container.innerHTML = cart.map(item => `
           <div class="flex items-center justify-between bg-white p-3.5 rounded-2xl border border-brand-200 shadow-sm">
             <div class="flex items-center gap-3">
-              <img src="${item.image}" alt="" class="w-12 h-12 rounded-xl object-cover">
+              <img src="${item.image}" alt="" width="48" height="48" loading="lazy" class="w-12 h-12 rounded-xl object-cover">
               <div>
-                <h4 class="font-bold text-xs text-brand-950 line-clamp-1">${item.title}</h4>
-                <span class="text-xs font-bold text-terracotta">${item.price.toFixed(2)} €</span>
+                <h4 class="font-bold text-xs text-brand-950 line-clamp-2">${echapper(item.title)}</h4>
+                <span class="text-xs font-bold text-terracotta">${prix(item.price)}</span>
               </div>
             </div>
             <div class="flex items-center gap-2 bg-brand-100 px-2 py-1 rounded-xl text-xs font-bold">
-              <button onclick="updateQty('${item.id}', -1)" class="w-5 h-5 rounded hover:bg-brand-200 flex items-center justify-center">-</button>
+              <button onclick="updateQty('${item.id}', -1)" aria-label="Retirer un" class="w-7 h-7 rounded hover:bg-brand-200 flex items-center justify-center">-</button>
               <span>${item.qty}</span>
-              <button onclick="updateQty('${item.id}', 1)" class="w-5 h-5 rounded hover:bg-brand-200 flex items-center justify-center">+</button>
+              <button onclick="updateQty('${item.id}', 1)" aria-label="Ajouter un" class="w-7 h-7 rounded hover:bg-brand-200 flex items-center justify-center">+</button>
             </div>
           </div>
         `).join('');
       }
 
       const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      document.getElementById('cart-subtotal').textContent = `${subtotal.toFixed(2)} €`;
+      document.getElementById('cart-subtotal').textContent = prix(subtotal);
 
-      const discount = promoDiscountApplied ? subtotal * 0.10 : 0;
+      const discount = 0;
       if (promoDiscountApplied) {
         document.getElementById('promo-discount-row').classList.remove('hidden');
         document.getElementById('cart-discount').textContent = `-${discount.toFixed(2)} €`;
@@ -1349,19 +1473,8 @@
       }
 
       const total = subtotal - discount;
-      document.getElementById('cart-total-price').textContent = `${total.toFixed(2)} €`;
-      document.getElementById('checkout-modal-total').textContent = `${total.toFixed(2)} €`;
-    }
-
-    function applyPromoCode() {
-      const code = document.getElementById('promo-code-input').value.trim().toUpperCase();
-      if (code === 'ELODIE10') {
-        promoDiscountApplied = true;
-        updateCartUI();
-        showToast('Code Promo -10% appliqué !');
-      } else {
-        showToast('Code invalide. Essayez ELODIE10');
-      }
+      document.getElementById('cart-total-price').textContent = prix(total);
+      document.getElementById('checkout-modal-total').textContent = prix(total);
     }
 
     // CHECKOUT MODAL LOGIC
@@ -1386,30 +1499,8 @@
       envoyerAElodie('Demande de commande', texte);
     }
 
-    // DETAIL MODAL LOGIC
-    function openDetailModal(id) {
-      const product = CATALOG.find(p => p.id === id);
-      if (!product) return;
-      selectedModalProduct = product;
-
-      document.getElementById('modal-image').src = product.image;
-      document.getElementById('modal-title').textContent = product.title;
-      document.getElementById('modal-cat').textContent = product.category;
-      document.getElementById('modal-price').textContent = `${product.price.toFixed(2)} €`;
-      document.getElementById('modal-desc').textContent = product.description;
-      document.getElementById('modal-ingredients').textContent = product.ingredients;
-
-      document.getElementById('modal-add-btn').onclick = () => {
-        addToCart(product.id, product.title, product.price, product.image);
-        closeDetailModal();
-      };
-
-      document.getElementById('detail-modal').classList.remove('hidden');
-    }
-
-    function closeDetailModal() {
-      document.getElementById('detail-modal').classList.add('hidden');
-    }
+    // Ancienne fenêtre produit : redirige vers la page produit
+    function openDetailModal(id) { navigateTo('produit-' + id); }
 
     // TOAST SYSTEM
     function showToast(msg) {
