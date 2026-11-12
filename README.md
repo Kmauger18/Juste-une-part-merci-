@@ -4,6 +4,16 @@ Site de pâtisserie maison d'Élodie : pâtisserie française traditionnelle et 
 
 En ligne (une fois GitHub Pages activé) : https://kmauger18.github.io/Juste-une-part-merci-/
 
+## Espace de gestion
+
+Le catalogue, les infos et les commandes peuvent être gérés depuis l'espace de gestion d'Élodie (dépôt [Juste-une-part-gestion](https://github.com/Kmauger18/Juste-une-part-gestion)). Une fois Firebase configuré (voir le guide dans ce dépôt et `firebase-config.js` ici) :
+
+- les gâteaux affichés et leurs prix viennent de l'espace de gestion ;
+- le téléphone, l'e-mail, les horaires et les créneaux aussi (`infos.txt` ne sert plus que de secours) ;
+- les commandes du site arrivent directement dans l'espace de gestion.
+
+Tant que `firebase-config.js` est vide, le site fonctionne comme décrit ci-dessous.
+
 ## Modifier le téléphone, l'e-mail, l'adresse ou les horaires
 
 Tout se trouve dans **`infos.txt`**. Sur GitHub :
@@ -36,7 +46,8 @@ sa messagerie s'ouvre avec la commande déjà rédigée :
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Le site (toutes les pages) |
-| `infos.txt` | Coordonnées et horaires affichés sur le site |
+| `infos.txt` | Coordonnées et horaires affichés sur le site (secours si l'espace de gestion n'est pas branché) |
+| `firebase-config.js`, `js/site-en-ligne.js` | Connexion à la base de l'espace de gestion |
 | `css/style.css` | Styles compilés (ne pas modifier à la main) |
 | `css/source.css`, `tailwind.config.js` | Source des styles et couleurs |
 | `fonts/` | Polices hébergées sur le site |

@@ -896,6 +896,7 @@
             </div>
           </div>
 
+          <p id="bandeau-fermeture" class="hidden text-sm font-semibold text-red-800 bg-red-50 border border-red-200 rounded-xl p-3"></p>
           <button id="open-checkout-modal-btn" onclick="openCheckoutModal()" class="w-full py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold rounded-2xl shadow-lg transition-all text-sm uppercase tracking-wider">
             Passer à la commande
           </button>
@@ -952,6 +953,10 @@
           </div>
         </div>
 
+        <div>
+          <label for="ck-message" class="block text-xs font-bold uppercase text-brand-700 mb-1">Message pour Élodie (facultatif)</label>
+          <textarea id="ck-message" rows="2" maxlength="1000" placeholder="Allergies, inscription, précisions…" class="w-full bg-brand-50 border border-brand-300 rounded-xl p-3 text-sm focus:outline-none"></textarea>
+        </div>
         <div class="bg-brand-50 p-4 rounded-2xl border border-brand-200 space-y-2">
           <span class="text-xs uppercase font-bold text-brand-600 block">Récapitulatif de règlement</span>
           <div class="flex justify-between font-bold text-base text-brand-900">
@@ -960,10 +965,21 @@
           </div>
         </div>
 
-        <button type="submit" class="w-full py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold rounded-2xl shadow-lg transition-all text-sm uppercase">
+        <p class="text-xs text-brand-600">Rien n'est payé en ligne : Élodie vous recontacte pour confirmer la date et le montant.</p>
+        <button type="submit" id="ck-envoyer" class="w-full py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold rounded-2xl shadow-lg transition-all text-sm uppercase disabled:opacity-60">
           Envoyer ma demande de commande
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION DE COMMANDE -->
+  <div id="confirmation-commande" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-950/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="confirmation-titre">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center shadow-2xl space-y-4">
+      <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-700 grid place-items-center text-3xl"><i class="fa-solid fa-check"></i></div>
+      <h2 id="confirmation-titre" class="font-display text-2xl font-bold text-brand-950">Demande envoyée !</h2>
+      <p class="text-brand-700">Merci ! Élodie a bien reçu votre demande <strong id="confirmation-numero"></strong>. Elle vous recontacte rapidement pour confirmer la date et le montant.</p>
+      <button type="button" id="confirmation-fermer" onclick="document.getElementById('confirmation-commande').classList.add('hidden')" class="w-full py-3.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-2xl">Parfait</button>
     </div>
   </div>
 
@@ -1083,7 +1099,8 @@
     const NOM_SITE = 'Juste une part, merci !';
 
     // Image Unsplash à la bonne largeur
-    function imgUrl(url, w) { return url.replace(/([?&])w=\d+/, '$1w=' + w); }
+    function imgUrl(url, w) { return String(url || '').replace(/([?&])w=\d+/, '$1w=' + w); }
+    function estUnsplash(url) { return /images\.unsplash\.com/.test(url || ''); }
     function echapper(t) { return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
     function prix(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
 
@@ -1162,7 +1179,7 @@
       return `
         <article class="bg-white rounded-3xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl transition-all flex flex-col group">
           <a href="#produit-${item.id}" class="relative block overflow-hidden" aria-label="Voir ${echapper(item.title)}">
-            <img src="${imgUrl(item.image, 600)}" srcset="${imgUrl(item.image, 400)} 400w, ${imgUrl(item.image, 800)} 800w" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" alt="${echapper(item.title)}" width="600" height="400" loading="lazy" decoding="async" class="w-full ${grand ? 'h-56' : 'h-48'} object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="${imgUrl(item.image, 600)}" ${estUnsplash(item.image) ? `srcset="${imgUrl(item.image, 400)} 400w, ${imgUrl(item.image, 800)} 800w"` : ''} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" alt="${echapper(item.title)}" width="600" height="400" loading="lazy" decoding="async" class="w-full ${grand ? 'h-56' : 'h-48'} object-cover group-hover:scale-105 transition-transform duration-500">
             <span class="absolute top-3 left-3 bg-brand-950/85 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider">${echapper(item.badge)}</span>
           </a>
           <div class="p-5 sm:p-6 flex-grow flex flex-col justify-between gap-4">
@@ -1179,7 +1196,8 @@
     }
 
     function renderHomePageFeatured() {
-      document.getElementById('home-featured-grid').innerHTML = CATALOG.slice(0, 3).map(item => carteProduit(item, true)).join('');
+      const vedettes = CATALOG.filter(p => p.vedette);
+      document.getElementById('home-featured-grid').innerHTML = (vedettes.length ? vedettes : CATALOG).slice(0, 3).map(item => carteProduit(item, true)).join('');
     }
 
     // CATALOG RENDER & FILTER
@@ -1229,7 +1247,7 @@
 
       const img = document.getElementById('pp-image');
       img.src = imgUrl(produit.image, 1000);
-      img.srcset = `${imgUrl(produit.image, 600)} 600w, ${imgUrl(produit.image, 1000)} 1000w, ${imgUrl(produit.image, 1400)} 1400w`;
+      img.srcset = estUnsplash(produit.image) ? `${imgUrl(produit.image, 600)} 600w, ${imgUrl(produit.image, 1000)} 1000w, ${imgUrl(produit.image, 1400)} 1400w` : '';
       img.sizes = '(min-width:1024px) 50vw, 100vw';
       img.alt = produit.title;
       document.getElementById('pp-badge').textContent = produit.badge;
@@ -1261,7 +1279,8 @@
       const taille = d.formats ? d.formats[ppEtat.format].label : '';
       const id = ppEtat.produit.id + (taille ? '-' + ppEtat.format : '');
       const titre = ppEtat.produit.title + (taille ? ` (${taille})` : '');
-      for (let i = 0; i < ppEtat.qty; i++) addToCart(id, titre, prixProduit(), imgUrl(ppEtat.produit.image, 200), true);
+      const parts = taille ? [4, 8, 12][ppEtat.format] || 8 : 1;
+      for (let i = 0; i < ppEtat.qty; i++) addToCart(id, titre, prixProduit(), imgUrl(ppEtat.produit.image, 200), true, { produitId: ppEtat.produit.id, taille: taille || d.unite || '', parts });
       showToast(`${ppEtat.qty} × ${titre} ajouté au panier`);
     }
 
@@ -1304,6 +1323,7 @@
         if (e.key !== 'Escape') return;
         document.getElementById('cart-drawer').classList.add('hidden');
         closeCheckoutModal();
+        document.getElementById('confirmation-commande').classList.add('hidden');
       });
 
       // Cart Drawer Toggle
@@ -1324,7 +1344,11 @@
         const price = calculateCustomPrice();
         const customId = 'custom-' + Date.now();
         
-        addToCart(customId, title, price, 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&q=80&w=200', true);
+        const opts = [document.getElementById('opt-glutenfree')?.checked ? 'sans gluten' : '', document.getElementById('opt-lowsugar')?.checked ? 'allégé en sucre' : ''].filter(Boolean).join(', ');
+        const inscription = (document.getElementById('custom-inscription')?.value || '').trim();
+        const consignes = (document.getElementById('custom-instructions')?.value || '').trim();
+        const details = `Occasion : ${customCakeState.occasion}. Base : ${customCakeState.base}. Saveur : ${customCakeState.flavor}. Finition : ${customCakeState.finish}.${inscription ? ` Inscription : « ${inscription} ».` : ''}${opts ? ` Options : ${opts}.` : ''}${consignes ? ` Consignes : ${consignes}` : ''}`;
+        addToCart(customId, title, price, 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&q=80&w=200', true, { produitId: null, taille: `${customCakeState.portions} parts`, parts: customCakeState.portions, details });
         showToast('Création sur mesure ajoutée au panier !');
       });
 
@@ -1403,12 +1427,12 @@
     }
 
     // CART MANAGEMENT
-    function addToCart(id, title, price, image, silencieux) {
+    function addToCart(id, title, price, image, silencieux, infos) {
       const existing = cart.find(item => item.id === id);
       if (existing) {
         existing.qty += 1;
       } else {
-        cart.push({ id, title, price, image, qty: 1 });
+        cart.push({ id, title, price, image, qty: 1, ...(infos || {}) });
       }
       saveCart();
       updateCartUI();
@@ -1488,9 +1512,31 @@
       document.getElementById('checkout-modal').classList.add('hidden');
     }
 
-    function handleFinalCheckout(e) {
+    async function handleFinalCheckout(e) {
       e.preventDefault();
       const v = id => document.getElementById(id).value.trim();
+      if (window.__siteEnLigne && window.__siteEnLigne.commandesOuvertes === false) { showToast(window.__siteEnLigne.messageFermeture || 'Les commandes sont fermées pour le moment.'); return; }
+      if (window.__siteEnLigne && window.__siteEnLigne.envoyerCommande) {
+        const bouton = document.getElementById('ck-envoyer');
+        bouton.disabled = true;
+        try {
+          const numero = await window.__siteEnLigne.envoyerCommande({
+            client: { nom: `${v('ck-prenom')} ${v('ck-nom')}`.trim(), tel: v('ck-tel'), email: v('ck-email') },
+            lignes: cart.map(i => {
+              const produitId = i.produitId !== undefined ? i.produitId : (CATALOG.find(p => i.id === p.id || i.id.startsWith(p.id + '-')) || {}).id || null;
+              return { produitId, titre: i.title, taille: i.taille || '', parts: Number(i.parts) || 8, qty: i.qty, prix: i.price, details: i.details || '' };
+            }),
+            dateRetrait: v('pickup-date-input'), heure: v('ck-heure'), message: v('ck-message')
+          });
+          cart = []; saveCart(); updateCartUI(); closeCheckoutModal();
+          document.getElementById('checkout-form').reset();
+          afficherConfirmation(numero);
+        } catch (err) {
+          console.error(err);
+          showToast('L\'envoi n\'a pas fonctionné. Vérifiez votre connexion et réessayez.');
+        } finally { bouton.disabled = false; }
+        return;
+      }
       const lignes = cart.map(i => `- ${i.qty} × ${i.title} (${(i.price * i.qty).toFixed(2)} €)`).join('\n');
       const total = document.getElementById('cart-total-price').textContent;
       const dateRetrait = v('pickup-date-input') ? new Date(v('pickup-date-input') + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' }) : 'à convenir';
@@ -1498,6 +1544,43 @@
       closeCheckoutModal();
       envoyerAElodie('Demande de commande', texte);
     }
+
+    function afficherConfirmation(numero) {
+      const d = document.getElementById('confirmation-commande');
+      document.getElementById('confirmation-numero').textContent = numero;
+      d.classList.remove('hidden');
+      document.getElementById('confirmation-fermer').focus();
+    }
+
+    // ===== Données en ligne (catalogue et infos gérés depuis l'espace de gestion) =====
+    window.__site = {
+      appliquerCatalogue(produits) {
+        if (!produits || !produits.length) return;
+        CATALOG.length = 0;
+        Object.keys(DETAILS).forEach(k => delete DETAILS[k]);
+        produits.forEach(p => {
+          CATALOG.push({ id: p.id, title: p.titre, category: p.categorie, price: Number(p.prix) || 0, image: p.image || '', description: p.description || '', ingredients: p.ingredients || '', badge: p.badge || '', isGlutenFree: !!p.sansGluten, vedette: !!p.vedette });
+          DETAILS[p.id] = { tagline: p.accroche || '', allergenes: p.allergenes || [], formats: p.tailles ? TAILLES : null, unite: p.unite || '', conservation: p.conservation || '', delai: p.delai || '' };
+        });
+        renderHomePageFeatured();
+        renderCatalogGrid();
+        if (location.hash.startsWith('#produit-')) afficherRoute(false);
+      },
+      appliquerInfos(p) {
+        INFOS_DISTANTES = true;
+        const map = { telephone: p.telephone, email: p.email, adresse: p.adresse, 'horaires semaine': p.horairesSemaine, 'horaires dimanche': p.horairesDimanche };
+        Object.entries(map).forEach(([k, val]) => { if (val !== undefined) INFOS[k] = val; });
+        appliquerInfos();
+        const creneaux = String(p.creneaux || '').split('\n').map(x => x.trim()).filter(Boolean);
+        if (creneaux.length) document.getElementById('ck-heure').innerHTML = creneaux.map(c => `<option>${echapper(c)}</option>`).join('');
+        const fermee = p.commandesOuvertes === false;
+        const bandeau = document.getElementById('bandeau-fermeture');
+        bandeau.textContent = p.messageFermeture || 'Les commandes sont fermées pour le moment.';
+        bandeau.classList.toggle('hidden', !fermee);
+        document.getElementById('open-checkout-modal-btn').disabled = fermee;
+        document.getElementById('open-checkout-modal-btn').classList.toggle('opacity-50', fermee);
+      }
+    };
 
     // Ancienne fenêtre produit : redirige vers la page produit
     function openDetailModal(id) { navigateTo('produit-' + id); }
@@ -1512,6 +1595,7 @@
     // ===== INFOS DU SITE (fichier infos.txt) =====
     // Les lignes "Clé : valeur" de infos.txt remplacent le texte des éléments data-info="clé".
     const INFOS = {};
+    let INFOS_DISTANTES = false;
     function normaliserCle(c) {
       return c.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
     }
@@ -1535,6 +1619,7 @@
     fetch('infos.txt', { cache: 'no-store' })
       .then(r => r.ok ? r.text() : Promise.reject())
       .then(txt => {
+        if (INFOS_DISTANTES) return;
         txt.split(/\r?\n/).forEach(ligne => {
           if (!ligne.trim() || ligne.trim().startsWith('#')) return;
           const i = ligne.indexOf(':');
@@ -1558,5 +1643,6 @@
       }
     }
   </script>
+  <script type="module" src="js/site-en-ligne.js"></script>
 </body>
 </html>
