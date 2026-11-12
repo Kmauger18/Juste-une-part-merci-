@@ -148,7 +148,7 @@
                 <button onclick="navigateTo('sur-mesure')" class="px-8 py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
                   <i class="fa-solid fa-wand-magic-sparkles"></i> Créer Mon Gâteau Sur-Mesure
                 </button>
-                <button onclick="navigateTo('patisseries')" class="px-8 py-4 bg-white hover:bg-brand-100 text-brand-900 border border-brand-300 font-bold rounded-2xl shadow-md transition-all text-center">
+                <button onclick="navigateTo('genre-moment')" class="px-8 py-4 bg-white hover:bg-brand-100 text-brand-900 border border-brand-300 font-bold rounded-2xl shadow-md transition-all text-center">
                   Explorer La Carte du Moment
                 </button>
               </div>
@@ -199,20 +199,21 @@
         </div>
       </section>
 
-      <!-- CAROUSEL APERÇU -->
-      <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <!-- GENRES DE PÂTISSERIES -->
+      <section id="nos-patisseries" class="scroll-mt-24 py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-3">
           <div>
-            <span class="font-serif italic text-terracotta text-lg">Sélection Exclusive</span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-900">Les Pâtisseries du Moment</h2>
+            <span class="font-serif italic text-terracotta text-lg">Toute la carte</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-900">Nos pâtisseries</h2>
+            <p class="text-sm text-brand-600 mt-1">Choisissez une famille pour voir tous les gâteaux.</p>
           </div>
-          <button onclick="navigateTo('patisseries')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-800 hover:text-terracotta">
-            Voir l'ensemble de la carte <i class="fa-solid fa-arrow-right"></i>
-          </button>
+          <a href="#genre-all" class="inline-flex items-center gap-2 text-sm font-bold text-brand-800 hover:text-terracotta">
+            Voir toute la carte <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
 
-        <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Dynamic high-impact cards generated via JS -->
+        <div id="home-featured-grid" class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+          <!-- Tuiles des genres générées en JS -->
         </div>
       </section>
 
@@ -276,10 +277,10 @@
       <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-3xl mx-auto mb-10">
-          <span class="font-serif italic text-terracotta text-lg">Pâtisseries Traditionnelles</span>
-          <h1 class="font-display text-4xl font-bold text-brand-950">La Carte d'Élodie</h1>
+          <span id="carte-surtitre" class="font-serif italic text-terracotta text-lg">Toute la carte</span>
+          <h1 id="carte-titre" class="font-display text-4xl font-bold text-brand-950">La carte d'Élodie</h1>
           <p class="text-brand-700 mt-2 text-sm sm:text-base">
-            Tous nos gâteaux sont confectionnés à la commande dans notre atelier avec des matières premières locales d'exception.
+            <span id="carte-intro">Tous les gâteaux sont faits à la commande, avec de bons produits.</span>
           </p>
 
           <!-- Search & Filter Controls -->
@@ -289,14 +290,7 @@
               <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-brand-400"></i>
             </div>
 
-            <div id="category-filter-bar" class="flex flex-wrap justify-center gap-2 pt-2">
-              <button data-cat="all" class="cat-btn active px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-900 text-white">Tous les gâteaux</button>
-              <button data-cat="tartes" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-100 text-brand-800 hover:bg-brand-200">Tartes Artisanales</button>
-              <button data-cat="choux" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-100 text-brand-800 hover:bg-brand-200">Choux & Éclairs</button>
-              <button data-cat="entremets" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-100 text-brand-800 hover:bg-brand-200">Entremets Classiques</button>
-              <button data-cat="mignardises" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-100 text-brand-800 hover:bg-brand-200">Macarons & Voyage</button>
-              <button data-cat="glutenfree" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-100 text-brand-800 hover:bg-brand-200">Options Sans Gluten</button>
-            </div>
+            <div id="category-filter-bar" class="flex flex-wrap justify-center gap-2 pt-2" role="tablist" aria-label="Familles de pâtisseries"></div>
           </div>
         </div>
 
@@ -730,7 +724,7 @@
         <nav aria-label="Fil d'Ariane" class="text-xs sm:text-sm text-brand-600 mb-6 flex flex-wrap items-center gap-2">
           <a href="#accueil" class="hover:text-terracotta">Accueil</a>
           <i class="fa-solid fa-chevron-right text-[9px] text-brand-400"></i>
-          <a href="#patisseries" class="hover:text-terracotta">La carte</a>
+          <a id="pp-crumb-genre" href="#patisseries" class="hover:text-terracotta">La carte</a>
           <i class="fa-solid fa-chevron-right text-[9px] text-brand-400"></i>
           <span id="pp-crumb" class="font-semibold text-brand-900"></span>
         </nav>
@@ -992,89 +986,20 @@
   <!-- APPLICATION SCRIPTS -->
   <script>
     // FULL CATALOG DATABASE
+    // CATALOGUE INTÉGRÉ (utilisé tant que l'espace de gestion n'est pas branché)
     const CATALOG = [
-      {
-        id: 'tat-1',
-        title: 'Tarte Tatin aux Pommes du Verger',
-        category: 'tartes',
-        price: 28.00,
-        image: 'https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&q=80&w=600',
-        description: 'Pommes caramélisées fondantissimes cuites au beurre demi-sel AOP et pâte feuilletée inversée croustillante.',
-        ingredients: 'Pommes Bio, Beurre Charentes-Poitou AOP, Sucre de canne, Farine locale, Sel de Guérande.',
-        badge: 'Top Vente'
-      },
-      {
-        id: 'pbr-2',
-        title: 'Paris-Brest Praliné Noisette',
-        category: 'choux',
-        price: 30.00,
-        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600',
-        description: 'Couronne de pâte à choux craquelin garnie d\'une crémeuse mousseline au praliné maison et éclats d\'amandes.',
-        ingredients: 'Noisettes du Piémont, Pâte à choux, Beurre frais, Œufs plein air, Sucre glace.',
-        badge: 'Incontournable'
-      },
-      {
-        id: 'ecl-3',
-        title: 'Duo d\'Éclairs Vanille & Caramel',
-        category: 'choux',
-        price: 9.50,
-        image: 'https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&q=80&w=600',
-        description: 'Deux grands éclairs garnis d\'une crème pâtissière à la vanille de Madagascar et cœur caramel coulant.',
-        ingredients: 'Gousses de vanille entière, Caramel salé, Pâte à choux artisanale.',
-        badge: 'Format Duo'
-      },
-      {
-        id: 'cit-4',
-        title: 'Tarte Citron Meringuée & Basilic',
-        category: 'tartes',
-        price: 26.00,
-        image: 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600',
-        description: 'Crémeux citron bio de Sicile rafraîchi d\'une pointe de basilic et surmonté d\'une meringue italienne dorée.',
-        ingredients: 'Citrons bio, Pâte sablée, Meringue italienne, Beurre AOP.',
-        badge: 'Fraîcheur'
-      },
-      {
-        id: 'ent-5',
-        title: 'Entremets Chocolat Grand Cru 70%',
-        category: 'entremets',
-        price: 34.00,
-        image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600',
-        description: 'Mousse légère au chocolat Valrhona Guanaja 70%, biscuit dacquoise et croustillant praliné feuilletine.',
-        ingredients: 'Chocolat 70% pure origine, Crème fleurette, Praliné amande-noisette.',
-        badge: 'Gourmand'
-      },
-      {
-        id: 'mil-6',
-        title: 'Mille-Feuille Caramélisé Vanille',
-        category: 'entremets',
-        price: 29.00,
-        image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=600',
-        description: 'Trois couches de feuilletage croustillant caramélisé et crème diplomate onctueuse à la gousse de vanille.',
-        ingredients: 'Feuilletage inversé, Vanille de Tahiti, Beurre sec.',
-        badge: 'Tradition'
-      },
-      {
-        id: 'mac-7',
-        title: 'Coffret Macarons d\'Élodie (12 pièces)',
-        category: 'mignardises',
-        price: 24.00,
-        image: 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=80&w=600',
-        description: 'Assortiment de 12 macarons faits main : Pistache, Framboise, Chocolat, Caramel, Citron et Vanille.',
-        ingredients: 'Poudre d\'amande fine, Blancs d\'œufs, Ganaches pure origine.',
-        badge: 'Sans Gluten',
-        isGlutenFree: true
-      },
-      {
-        id: 'pav-8',
-        title: 'Pavlova Aux Fruits Rouges de Saison',
-        category: 'glutenfree',
-        price: 31.00,
-        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=600',
-        description: 'Coque de meringue suisse crousti-fondante, chantilly mascarpone vanillée et déferlante de fruits frais.',
-        ingredients: 'Meringue suisse, Fruits rouges bio, Mascarpone, Crème entière.',
-        badge: '100% Sans Gluten',
-        isGlutenFree: true
-      }
+      {"id": "cit-4", "title": "Tarte au citron meringuée", "category": "tartes", "price": 26, "image": "https://images.unsplash.com/photo-1667933240032-ffa1414d021e?auto=format&fit=crop&q=75&w=800", "description": "Pâte sablée maison, crémeux au citron et meringue italienne dorée au chalumeau.", "ingredients": "Citrons, beurre, sucre, œufs, farine.", "badge": "Fraîcheur", "isGlutenFree": false, "vedette": true},
+      {"id": "tat-1", "title": "Tarte Tatin aux pommes", "category": "tartes", "price": 28, "image": "https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&q=75&w=800", "description": "Pommes caramélisées au beurre salé, fondantes, sur une pâte croustillante.", "ingredients": "Pommes, beurre demi-sel, sucre, farine.", "badge": "Top vente", "isGlutenFree": false, "vedette": false},
+      {"id": "ent-5", "title": "Entremets chocolat framboise", "category": "entremets", "price": 34, "image": "https://images.unsplash.com/photo-1619860861574-00fb0519cd05?auto=format&fit=crop&q=75&w=800", "description": "Mousse au chocolat noir, cœur framboise et biscuit moelleux, sous un glaçage brillant.", "ingredients": "Chocolat noir, crème, framboises, œufs, sucre, farine.", "badge": "Gourmand", "isGlutenFree": false, "vedette": false},
+      {"id": "dom-14", "title": "Dômes vanille cœur fraise", "category": "entremets", "price": 18, "image": "https://images.unsplash.com/photo-1750437709423-4b7e3e49c21b?auto=format&fit=crop&q=75&w=800", "description": "Mousse légère à la vanille, cœur coulant à la fraise et sablé croustillant.", "ingredients": "Crème, vanille, fraises, sucre, beurre, farine.", "badge": "Nouveauté", "isGlutenFree": false, "vedette": true},
+      {"id": "fra-9", "title": "Fraisier", "category": "gateaux", "price": 32, "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=75&w=800", "description": "Génoise moelleuse, crème mousseline vanille et fraises fraîches.", "ingredients": "Fraises, œufs, sucre, farine, beurre, lait, vanille.", "badge": "De saison", "isGlutenFree": false, "vedette": true},
+      {"id": "lay-11", "title": "Layer cake d'anniversaire", "category": "gateaux", "price": 38, "image": "https://images.unsplash.com/photo-1737189409843-c86c2d4770fd?auto=format&fit=crop&q=75&w=800", "description": "Génoises vanille, crème légère et fruits rouges, décoré selon vos envies (prénom, âge, couleurs).", "ingredients": "Farine, œufs, sucre, beurre, crème, fruits rouges, vanille.", "badge": "Anniversaire", "isGlutenFree": false, "vedette": false},
+      {"id": "fon-10", "title": "Forêt-noire", "category": "gateaux", "price": 30, "image": "https://images.unsplash.com/photo-1768260731727-275f15ed2556?auto=format&fit=crop&q=75&w=800", "description": "Génoise au cacao, chantilly vanillée et griottes, copeaux de chocolat.", "ingredients": "Chocolat, crème, griottes, œufs, sucre, farine.", "badge": "Tradition", "isGlutenFree": false, "vedette": false},
+      {"id": "nak-12", "title": "Naked cake fleuri", "category": "gateaux", "price": 45, "image": "https://images.unsplash.com/photo-1519654793190-2e8a4806f1f2?auto=format&fit=crop&q=75&w=800", "description": "Gâteau à étages à la crème légère, décoré de fleurs fraîches. Idéal pour un mariage, un baptême ou un anniversaire.", "ingredients": "Farine, œufs, sucre, beurre, crème, fruits de saison.", "badge": "Fêtes & mariages", "isGlutenFree": false, "vedette": false},
+      {"id": "gch-13", "title": "Gâteau chocolat d'anniversaire", "category": "gateaux", "price": 36, "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=75&w=800", "description": "Biscuit au chocolat moelleux, ganache montée et coulure de chocolat noir.", "ingredients": "Chocolat, crème, œufs, sucre, farine, beurre.", "badge": "Anniversaire", "isGlutenFree": false, "vedette": false},
+      {"id": "pbr-2", "title": "Choux craquelin au praliné", "category": "classiques", "price": 15, "image": "https://images.unsplash.com/photo-1530449375418-3c3babfb8ea7?auto=format&fit=crop&q=75&w=800", "description": "Six choux au craquelin garnis d'une crème mousseline au praliné noisette maison.", "ingredients": "Farine, beurre, œufs, lait, noisettes, sucre.", "badge": "Incontournable", "isGlutenFree": false, "vedette": false},
+      {"id": "ecl-3", "title": "Éclairs au caramel", "category": "classiques", "price": 9.5, "image": "https://images.unsplash.com/photo-1670833285737-cd390d9aa101?auto=format&fit=crop&q=75&w=800", "description": "Deux grands éclairs garnis d'une crème au caramel au beurre salé, glaçage caramel.", "ingredients": "Farine, beurre, œufs, lait, sucre, crème.", "badge": "Format duo", "isGlutenFree": false, "vedette": true},
+      {"id": "mac-7", "title": "Coffret de macarons (12 pièces)", "category": "classiques", "price": 24, "image": "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=75&w=800", "description": "Douze macarons faits main : pistache, framboise, chocolat, caramel, citron et vanille.", "ingredients": "Poudre d'amande, blancs d'œufs, sucre, ganaches.", "badge": "Sans gluten", "isGlutenFree": true, "vedette": false}
     ];
 
     // DÉTAILS DES PAGES PRODUITS
@@ -1085,16 +1010,39 @@
       { label: '10 à 12 parts', mult: 1.5 }
     ];
     const DETAILS = {
-      'tat-1': { tagline: 'La tarte renversée, comme à la maison', allergenes: ['Gluten', 'Lait'], formats: TAILLES, conservation: 'Au frais, jusqu\'à 2 jours. À sortir 30 minutes avant de servir, ou à tiédir quelques minutes au four : délicieuse avec une boule de glace vanille ou de la crème crue.', delai: 'À commander 48 h à l\'avance.' },
-      'pbr-2': { tagline: 'La couronne au praliné noisette', allergenes: ['Gluten', 'Œufs', 'Lait', 'Fruits à coque'], formats: TAILLES, conservation: 'Au réfrigérateur, à consommer dans les 24 h. À sortir 15 minutes avant de servir.', delai: 'À commander 48 h à l\'avance.' },
-      'ecl-3': { tagline: 'Un à la vanille, un au caramel', allergenes: ['Gluten', 'Œufs', 'Lait'], formats: null, unite: 'le duo', conservation: 'Au réfrigérateur, à déguster le jour même pour un choux bien croustillant.', delai: 'À commander 24 h à l\'avance.' },
-      'cit-4': { tagline: 'Acidulée, fondante, meringue dorée', allergenes: ['Gluten', 'Œufs', 'Lait'], formats: TAILLES, conservation: 'Au réfrigérateur, jusqu\'à 2 jours. La meringue est meilleure le premier jour.', delai: 'À commander 48 h à l\'avance.' },
-      'ent-5': { tagline: 'Pour les amoureux de chocolat', allergenes: ['Gluten', 'Œufs', 'Lait', 'Fruits à coque', 'Soja'], formats: TAILLES, conservation: 'Au réfrigérateur, jusqu\'à 3 jours. À sortir 20 minutes avant de servir pour une mousse bien fondante.', delai: 'À commander 72 h à l\'avance.' },
-      'mil-6': { tagline: 'Feuilletage croustillant et vanille', allergenes: ['Gluten', 'Œufs', 'Lait'], formats: TAILLES, conservation: 'Au réfrigérateur, à consommer dans les 24 h pour garder le feuilletage croustillant. Coupez-le avec un couteau à dents.', delai: 'À commander 48 h à l\'avance.' },
-      'mac-7': { tagline: 'Six parfums, douze bouchées', allergenes: ['Œufs', 'Lait', 'Fruits à coque'], formats: null, unite: 'le coffret de 12', conservation: 'Au réfrigérateur dans leur boîte, jusqu\'à 4 jours. Ils sont encore meilleurs le lendemain.', delai: 'À commander 72 h à l\'avance.' },
-      'pav-8': { tagline: 'Meringue croquante et fruits frais', allergenes: ['Œufs', 'Lait'], formats: TAILLES, conservation: 'Au réfrigérateur, à consommer le jour même : la meringue ramollit au contact de la crème.', delai: 'À commander 48 h à l\'avance.' }
+      "cit-4": { tagline: "Acidulée, fondante, meringue dorée", allergenes: ["Gluten", "Œufs", "Lait"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, jusqu'à 2 jours. La meringue est meilleure le premier jour.", delai: "À commander 48 h à l'avance." },
+      "tat-1": { tagline: "La tarte renversée, comme à la maison", allergenes: ["Gluten", "Lait"], formats: TAILLES, unite: "", conservation: "Au frais, jusqu'à 2 jours. À tiédir quelques minutes au four avant de servir.", delai: "À commander 48 h à l'avance." },
+      "ent-5": { tagline: "Pour les amoureux de chocolat", allergenes: ["Gluten", "Œufs", "Lait", "Soja"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, jusqu'à 3 jours. À sortir 20 minutes avant de servir.", delai: "À commander 72 h à l'avance." },
+      "dom-14": { tagline: "Quatre petits entremets à partager", allergenes: ["Gluten", "Lait", "Œufs"], formats: null, unite: "les 4 dômes", conservation: "Au réfrigérateur, à déguster dans les 48 h.", delai: "À commander 72 h à l'avance." },
+      "fra-9": { tagline: "Le gâteau des beaux jours", allergenes: ["Gluten", "Œufs", "Lait"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, à consommer dans les 48 h.", delai: "À commander 72 h à l'avance." },
+      "lay-11": { tagline: "Plusieurs étages, décor personnalisé", allergenes: ["Gluten", "Œufs", "Lait"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, jusqu'à 3 jours. À sortir 30 minutes avant de servir.", delai: "À commander une semaine à l'avance." },
+      "fon-10": { tagline: "Chocolat, chantilly et griottes", allergenes: ["Gluten", "Œufs", "Lait"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, jusqu'à 2 jours.", delai: "À commander 72 h à l'avance." },
+      "nak-12": { tagline: "Le gâteau des grandes occasions", allergenes: ["Gluten", "Œufs", "Lait"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, à consommer dans les 48 h. Les fleurs ne se mangent pas.", delai: "À commander deux semaines à l'avance." },
+      "gch-13": { tagline: "Coulure de chocolat et rosaces de ganache", allergenes: ["Gluten", "Œufs", "Lait", "Soja"], formats: TAILLES, unite: "", conservation: "Au réfrigérateur, jusqu'à 3 jours. À sortir 30 minutes avant de servir.", delai: "À commander une semaine à l'avance." },
+      "pbr-2": { tagline: "Croquants dessus, fondants dedans", allergenes: ["Gluten", "Œufs", "Lait", "Fruits à coque"], formats: null, unite: "les 6 choux", conservation: "Au réfrigérateur, à consommer dans les 24 h.", delai: "À commander 48 h à l'avance." },
+      "ecl-3": { tagline: "Caramel au beurre salé", allergenes: ["Gluten", "Œufs", "Lait"], formats: null, unite: "le duo", conservation: "Au réfrigérateur, à déguster le jour même.", delai: "À commander 24 h à l'avance." },
+      "mac-7": { tagline: "Six parfums, douze bouchées", allergenes: ["Œufs", "Lait", "Fruits à coque"], formats: null, unite: "le coffret de 12", conservation: "Au réfrigérateur dans leur boîte, jusqu'à 4 jours.", delai: "À commander 72 h à l'avance." }
     };
-    const CATEGORIES = { tartes: 'Tartes artisanales', choux: 'Choux & éclairs', entremets: 'Entremets classiques', mignardises: 'Macarons & douceurs', glutenfree: 'Sans gluten' };
+
+    // GENRES DE PÂTISSERIES (page d'accueil et carte)
+    const GENRES = [
+      { id: 'moment', label: 'En ce moment', accroche: 'Les gâteaux du moment et les nouveautés', icone: 'fa-solid fa-star' },
+      { id: 'tartes', label: 'Tartes', accroche: 'Pâte sablée maison, fruits et crèmes', icone: 'fa-solid fa-chart-pie' },
+      { id: 'entremets', label: 'Entremets', accroche: 'Mousses, inserts et glaçages', icone: 'fa-solid fa-cake-candles' },
+      { id: 'gateaux', label: 'Gâteaux', accroche: 'Anniversaires, fêtes et grandes occasions', icone: 'fa-solid fa-cake-candles' },
+      { id: 'classiques', label: 'Grands classiques', accroche: 'Choux, éclairs, macarons…', icone: 'fa-solid fa-crown' }
+    ];
+    // Anciennes catégories rangées dans les nouveaux genres
+    const GENRE_DE = { tartes: 'tartes', entremets: 'entremets', gateaux: 'gateaux', classiques: 'classiques', choux: 'classiques', mignardises: 'classiques', glutenfree: 'gateaux', 'sur-mesure': 'gateaux' };
+    function genreDe(item) { return GENRE_DE[item.category] || 'classiques'; }
+    function produitsDuGenre(g) {
+      if (g === 'all') return CATALOG;
+      if (g === 'moment') return CATALOG.filter(p => p.vedette);
+      if (g === 'glutenfree') return CATALOG.filter(p => p.isGlutenFree);
+      return CATALOG.filter(p => genreDe(p) === g);
+    }
+    let genreActif = 'all';
+    const CATEGORIES = { tartes: 'Tartes', entremets: 'Entremets', gateaux: 'Gâteaux', classiques: 'Grands classiques', choux: 'Grands classiques', mignardises: 'Grands classiques', glutenfree: 'Sans gluten', 'sur-mesure': 'Gâteaux' };
     const PAGE_TITRES = { accueil: 'Pâtisserie maison par Élodie', patisseries: 'La carte des gâteaux', 'sur-mesure': 'Gâteau sur mesure', histoire: 'Mon histoire', contact: 'Contact et retrait' };
     const NOM_SITE = 'Juste une part, merci !';
 
@@ -1146,7 +1094,15 @@
     function afficherRoute(defiler) {
       const route = decodeURIComponent(location.hash.slice(1)) || 'accueil';
       let pageId = route;
-      if (route.startsWith('produit-')) {
+      if (route.startsWith('genre-')) {
+        const g = route.slice(6);
+        genreActif = ['all', 'glutenfree', ...GENRES.map(x => x.id)].includes(g) ? g : 'all';
+        document.getElementById('catalog-search').value = '';
+        renderCatalogGrid();
+        pageId = 'patisseries';
+      } else if (route === 'patisseries') {
+        genreActif = 'all'; renderCatalogGrid();
+      } else if (route.startsWith('produit-')) {
         const ok = renderProductPage(route.slice(8));
         pageId = ok ? 'produit' : 'patisseries';
       } else if (!document.getElementById('page-' + route)) {
@@ -1156,7 +1112,8 @@
       document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
       document.getElementById('page-' + pageId).classList.add('active');
       document.body.classList.toggle('page-produit-ouverte', pageId === 'produit');
-      if (pageId !== 'produit') document.title = `${PAGE_TITRES[pageId] || ''} | ${NOM_SITE}`;
+      const genreTitre = route.startsWith('genre-') ? (GENRES.find(x => x.id === genreActif) || {}).label : null;
+      if (pageId !== 'produit') document.title = `${genreTitre || PAGE_TITRES[pageId] || ''} | ${NOM_SITE}`;
       if (defiler !== false) window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -1196,19 +1153,43 @@
     }
 
     function renderHomePageFeatured() {
-      const vedettes = CATALOG.filter(p => p.vedette);
-      document.getElementById('home-featured-grid').innerHTML = (vedettes.length ? vedettes : CATALOG).slice(0, 3).map(item => carteProduit(item, true)).join('');
+      const dejaUtilisees = new Set();
+      // Les familles d'abord, « En ce moment » en dernier, pour que chaque tuile ait sa propre photo
+      const photos = {};
+      [...GENRES.slice(1), GENRES[0]].forEach(g => {
+        const liste = produitsDuGenre(g.id).filter(p => p.image);
+        const choix = liste.find(p => !dejaUtilisees.has(p.image)) || liste[0];
+        if (choix) { photos[g.id] = choix.image; dejaUtilisees.add(choix.image); }
+      });
+      document.getElementById('home-featured-grid').innerHTML = GENRES.map((g, i) => {
+        const liste = produitsDuGenre(g.id);
+        const photo = photos[g.id];
+        return `<a href="#genre-${g.id}" class="group relative block overflow-hidden rounded-3xl bg-brand-900 shadow-sm hover:shadow-xl transition-all ${i === 0 ? 'col-span-2 lg:col-span-1 aspect-[2/1] lg:aspect-[4/5]' : 'aspect-square lg:aspect-[4/5]'}">
+          ${photo ? `<img src="${imgUrl(photo, 600)}" alt="" width="600" height="750" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">` : ''}
+          <span class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/30 to-transparent"></span>
+          ${g.id === 'moment' ? '<span class="absolute top-3 left-3 bg-gold text-brand-950 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full">Du moment</span>' : ''}
+          <span class="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
+            <span class="block font-display text-xl sm:text-2xl font-bold leading-tight">${g.label}</span>
+            <span class="block text-xs text-brand-200 mt-1">${liste.length} pâtisserie${liste.length > 1 ? 's' : ''}<i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i></span>
+          </span>
+        </a>`;
+      }).join('');
     }
 
     // CATALOG RENDER & FILTER
     function renderCatalogGrid() {
       const grid = document.getElementById('catalog-grid');
       const searchQuery = document.getElementById('catalog-search').value.toLowerCase().trim();
-      const activeCatBtn = document.querySelector('#category-filter-bar .cat-btn.active');
-      const activeCat = activeCatBtn ? activeCatBtn.getAttribute('data-cat') : 'all';
+      const activeCat = genreActif;
+      const g = GENRES.find(x => x.id === activeCat);
+      document.getElementById('carte-surtitre').textContent = g ? 'Nos pâtisseries' : (activeCat === 'glutenfree' ? 'Options' : 'Toute la carte');
+      document.getElementById('carte-titre').textContent = g ? g.label : (activeCat === 'glutenfree' ? 'Sans gluten' : 'La carte d\'Élodie');
+      document.getElementById('carte-intro').textContent = g ? g.accroche + '. Touchez un gâteau pour voir le détail et commander.' : 'Tous les gâteaux sont faits à la commande, avec de bons produits.';
+      const boutons = [{ id: 'all', label: 'Tout' }, ...GENRES, { id: 'glutenfree', label: 'Sans gluten' }];
+      document.getElementById('category-filter-bar').innerHTML = boutons.map(b => `<a href="#genre-${b.id}" role="tab" aria-selected="${b.id === activeCat}" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all ${b.id === activeCat ? 'bg-brand-900 text-white' : 'bg-brand-100 text-brand-800 hover:bg-brand-200'}">${b.label} <span class="opacity-60">${produitsDuGenre(b.id).length}</span></a>`).join('');
 
       const filtered = CATALOG.filter(item => {
-        const matchesCat = activeCat === 'all' || item.category === activeCat || (activeCat === 'glutenfree' && item.isGlutenFree);
+        const matchesCat = produitsDuGenre(activeCat).includes(item);
         const matchesSearch = !searchQuery || (item.title + ' ' + item.description).toLowerCase().includes(searchQuery);
         return matchesCat && matchesSearch;
       });
@@ -1252,6 +1233,9 @@
       img.alt = produit.title;
       document.getElementById('pp-badge').textContent = produit.badge;
       document.getElementById('pp-crumb').textContent = produit.title;
+      const gp = GENRES.find(x => x.id === genreDe(produit));
+      const lienGenre = document.getElementById('pp-crumb-genre');
+      lienGenre.textContent = gp ? gp.label : 'La carte'; lienGenre.href = gp ? '#genre-' + gp.id : '#patisseries';
       document.getElementById('pp-cat').textContent = CATEGORIES[produit.category] || '';
       document.getElementById('pp-title').textContent = produit.title;
       document.getElementById('pp-tagline').textContent = d.tagline || '';
@@ -1288,19 +1272,6 @@
     function setupEventListeners() {
       // Search
       document.getElementById('catalog-search').addEventListener('input', renderCatalogGrid);
-
-      // Categories
-      document.querySelectorAll('#category-filter-bar .cat-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('#category-filter-bar .cat-btn').forEach(b => {
-            b.classList.remove('bg-brand-900', 'text-white', 'active');
-            b.classList.add('bg-brand-100', 'text-brand-800');
-          });
-          btn.classList.add('bg-brand-900', 'text-white', 'active');
-          btn.classList.remove('bg-brand-100', 'text-brand-800');
-          renderCatalogGrid();
-        });
-      });
 
       // Mobile Menu Toggle
       document.getElementById('mobile-menu-btn').addEventListener('click', (e) => {
