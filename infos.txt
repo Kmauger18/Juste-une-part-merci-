@@ -1,0 +1,10 @@
+# Informations affichées sur le site « Juste une part, merci ! »
+# Modifie uniquement ce qui est après les deux-points ( : ), puis enregistre.
+# Le site se met à jour tout seul (compter 1 à 2 minutes sur GitHub Pages).
+# Laisse une valeur vide pour la masquer du site (ex. : "Email :").
+
+Telephone : 06 81 17 45 92
+Email :
+Adresse : Retrait sur rendez-vous
+Horaires semaine : Mardi – Samedi : 09h30 – 18h30
+Horaires dimanche : Dimanche : 09h00 – 13h00
