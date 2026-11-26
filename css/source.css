@@ -3,7 +3,6 @@
 @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 500 900; font-display: swap; src: url(../fonts/playfair-display-latin-700-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300 500; font-display: swap; src: url(../fonts/cormorant-garamond-latin-400-italic.woff2) format('woff2'); }
 @font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 600 700; font-display: swap; src: url(../fonts/cormorant-garamond-latin-600-italic.woff2) format('woff2'); }
-@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300 700; font-display: swap; src: url(../fonts/cormorant-garamond-latin-400-italic.woff2) format('woff2'); }
 @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 300 400; font-display: swap; src: url(../fonts/plus-jakarta-sans-latin-400-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url(../fonts/plus-jakarta-sans-latin-500-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(../fonts/plus-jakarta-sans-latin-600-normal.woff2) format('woff2'); }
@@ -15,28 +14,75 @@
 @tailwind utilities;
 
 @layer base {
-  :focus-visible { outline: 3px solid #C15C3D; outline-offset: 2px; border-radius: 6px; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-brand-50 text-brand-900 font-sans antialiased; }
+  :focus-visible { outline: 3px solid #9E3F23; outline-offset: 2px; border-radius: 6px; }
   h1, h2, h3 { text-wrap: balance; }
-  /* Icônes : place réservée pendant leur chargement */
-  .fa-solid, .fa-regular, .fa-brands { display: inline-block; min-width: 1em; }
+  p { text-wrap: pretty; }
+  [hidden] { display: none !important; }
+  ::selection { background: #C15C3D; color: #fff; }
 }
 
 @layer components {
+  /* Mise en page */
+  .conteneur { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-14 sm:py-20; }
+  .surtitre { @apply block text-xs font-bold uppercase tracking-[0.18em] text-terracotta-dark; }
+  .titre-section { @apply font-display text-3xl sm:text-4xl font-bold text-brand-950 leading-tight; }
+  .chapo { @apply text-base sm:text-lg text-brand-700 leading-relaxed; }
+
+  /* Icônes */
+  .ic { width: 1.15em; height: 1.15em; flex: none; display: inline-block; vertical-align: -0.2em; }
+
+  /* Boutons */
+  .btn { @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-5 py-3 text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed; min-height: 44px; }
+  .btn-primaire { @apply btn bg-terracotta-dark text-white hover:bg-brand-800; }
+  .btn-sombre { @apply btn bg-brand-900 text-white hover:bg-brand-800; }
+  .btn-secondaire { @apply btn bg-white text-brand-900 border border-brand-300 hover:border-brand-500 hover:bg-brand-100; }
+  .btn-clair { @apply btn bg-brand-50 text-brand-950 hover:bg-white; }
+  .lien { @apply font-semibold text-terracotta-dark underline decoration-brand-300 underline-offset-4 hover:decoration-terracotta-dark; }
+
+  /* Cartes et blocs */
+  .carte { @apply bg-white rounded-2xl border border-brand-200; }
+  .pastille { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+
+  /* Formulaires */
+  .etiquette { @apply block text-sm font-semibold text-brand-800 mb-1.5; }
+  .champ { @apply w-full rounded-xl border border-brand-300 bg-white px-3.5 py-3 text-[15px] text-brand-950 placeholder:text-brand-400 focus:border-terracotta-dark focus:outline-none focus:ring-2 focus:ring-terracotta/25; }
+
+  /* Pages (navigation par #adresse) */
   .page-view { display: none; }
-  .page-view.active { display: block; animation: apparition .35s ease both; }
-  @keyframes apparition { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .page-view.active { display: block; animation: apparition .3s ease both; }
+  @keyframes apparition { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* Textes légaux */
+  .texte-legal h2 { @apply font-display text-2xl font-bold text-brand-950 mt-10 mb-3; }
+  .texte-legal h3 { @apply font-bold text-brand-950 mt-6 mb-2; }
+  .texte-legal p, .texte-legal li { @apply text-[15px] text-brand-800 leading-relaxed; }
+  .texte-legal p + p { @apply mt-3; }
+  .texte-legal ul { @apply list-disc pl-5 space-y-1.5 mt-2; }
+  .texte-legal a { @apply lien; }
+
+  /* Choix (sur mesure, tailles) */
+  .choix { @apply relative flex flex-col gap-1 rounded-xl border-2 border-brand-200 bg-white p-4 text-left transition-colors hover:border-brand-400; }
+  .choix[aria-pressed="true"], .choix[aria-checked="true"] { @apply border-terracotta-dark bg-brand-50; }
+  .choix[aria-pressed="true"]::after, .choix[aria-checked="true"]::after { content: ''; position: absolute; top: 10px; right: 10px; width: 10px; height: 10px; border-radius: 50%; background: #9E3F23; }
+
+  /* Fenêtres */
+  .voile { @apply fixed inset-0 bg-brand-950/60; }
+  .barre-defilement::-webkit-scrollbar { width: 6px; }
+  .barre-defilement::-webkit-scrollbar-thumb { background: #C49D79; border-radius: 4px; }
+
+  /* Laisse la place à la barre d'achat fixe sur mobile */
+  .barre-achat { padding-bottom: calc(.75rem + env(safe-area-inset-bottom, 0px)); }
+  @media (max-width: 1023px) { body.page-produit-ouverte { padding-bottom: 5.5rem; } }
+
+  /* Lien d'évitement */
+  .evitement { @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-xl focus:bg-brand-950 focus:px-4 focus:py-3 focus:text-white; }
+
   @media (prefers-reduced-motion: reduce) {
     .page-view.active { animation: none; }
     html { scroll-behavior: auto !important; }
     *, *::before, *::after { transition-duration: .01ms !important; }
   }
-  .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-  .custom-scrollbar::-webkit-scrollbar-track { background: #F5ECE0; }
-  .custom-scrollbar::-webkit-scrollbar-thumb { background: #A97B55; border-radius: 4px; }
-  .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
-  .hero-gradient { background: linear-gradient(135deg, #FAF6F0 0%, #F5ECE0 50%, #EBD8C3 100%); }
-  .step-badge.active { background-color: #C15C3D; color: #fff; border-color: #C15C3D; }
-  .step-badge.completed { background-color: #4F2D17; color: #fff; border-color: #4F2D17; }
-  /* Laisse la place à la barre d'achat fixe sur mobile */
-  @media (max-width: 1023px) { body.page-produit-ouverte { padding-bottom: 5.5rem; } }
 }

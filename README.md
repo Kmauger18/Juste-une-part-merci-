@@ -26,17 +26,17 @@ Le site se met à jour en 1 à 2 minutes. Une ligne laissée vide (ex. `Email :`
 
 ## Modifier les gâteaux
 
-Dans `index.html`, cherche :
+Avec l'espace de gestion, tout se fait dans l'onglet Produits. Sans lui, dans `js/site.js`, cherche :
 
-- `const CATALOG` : nom, catégorie, prix de base (pour 6 à 8 parts), photo, description, ingrédients ;
+- `const CATALOGUE` : nom, catégorie, prix de base (pour 6 à 8 parts), photo, description, ingrédients ;
 - `const DETAILS` : pour chaque gâteau, la phrase d'accroche, les allergènes, les tailles proposées, la conservation et le délai de commande.
 
 Chaque gâteau a sa propre page, par exemple `#produit-tat-1`. Les prix des tailles sont calculés automatiquement à partir du prix de base (`TAILLES` : 4 parts × 0,6 ; 10 à 12 parts × 1,5).
 
 ## Commandes et messages
 
-Le site n'enregistre rien lui-même. Quand un client valide son panier ou le formulaire de contact,
-sa messagerie s'ouvre avec la commande déjà rédigée :
+Avec l'espace de gestion, les demandes de commande y arrivent directement. Sans lui, et pour le
+formulaire de contact, la messagerie du client s'ouvre avec le message déjà rédigé :
 
 - par **e-mail** si une adresse est renseignée dans `infos.txt` ;
 - sinon par **SMS** au numéro de téléphone.
@@ -45,7 +45,11 @@ sa messagerie s'ouvre avec la commande déjà rédigée :
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Le site (toutes les pages) |
+| `index.html` | Le site (toutes les pages, y compris mentions légales, CGV et confidentialité) |
+| `js/site.js` | Carte, pages produits, sur mesure, panier et demande de commande |
+| `img/icones.svg` | Icônes du site (aucun service extérieur) |
+| `img/photos/` | Photos du catalogue en WebP (480 et 960 px) |
+| `robots.txt`, `sitemap.xml`, `404.html` | Référencement et page d'erreur |
 | `infos.txt` | Coordonnées et horaires affichés sur le site (secours si l'espace de gestion n'est pas branché) |
 | `firebase-config.js`, `js/site-en-ligne.js` | Connexion à la base de l'espace de gestion |
 | `css/style.css` | Styles compilés (ne pas modifier à la main) |
@@ -67,3 +71,14 @@ Changer un texte, un prix ou `infos.txt` ne nécessite pas cette étape.
 ## Mise en ligne
 
 Le site est publié avec GitHub Pages (Settings → Pages → branche `main`, dossier `/ (root)`).
+
+
+## Sécurité et conformité
+
+- **Politique de sécurité du contenu** (balise `Content-Security-Policy` dans `index.html`) : seuls les fichiers du site, Firebase et les photos Unsplash peuvent être chargés. Aucun code JavaScript dans le HTML : tout est dans `js/site.js`.
+- **Contenu venant de la base échappé** avant affichage, et seules les images `https://`, `data:image/…` ou du site sont acceptées.
+- **Demande de commande** : vérification des champs, délai minimal selon les gâteaux du panier, acceptation des CGV, champ piège à robots, une demande par minute au plus. La base vérifie aussi chaque demande (règles Firestore dans le dépôt de gestion).
+- **Aucun cookie**, aucune mesure d'audience, aucune publicité : pas de bandeau cookies nécessaire. Le panier reste dans le navigateur.
+- **Pages légales** : mentions légales, conditions générales de vente, politique de confidentialité. Les informations légales (nom, statut, adresse, SIRET, médiateur, mention TVA) se remplissent dans l'espace de gestion (Paramètres → Informations légales) ou, à défaut, dans `infos.txt`.
+
+À faire dans Google Cloud / Firebase (non modifiable depuis le code) : restreindre la clé d'API Firebase au domaine `kmauger18.github.io`, activer App Check, et la double authentification sur le compte Google propriétaire du projet.
