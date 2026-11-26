@@ -1,6 +1,6 @@
 /** Configuration Tailwind du site. Pour régénérer css/style.css : voir README.md */
 module.exports = {
-  content: [require('path').join(__dirname, 'index.html')],
+  content: [require('path').join(__dirname, 'index.html'), require('path').join(__dirname, 'js/*.js')],
   theme: {
     extend: {
       colors: {
