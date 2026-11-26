@@ -108,7 +108,6 @@ let panier = [];
 try { panier = JSON.parse(localStorage.getItem('elodie_cart')) || []; if (!Array.isArray(panier)) panier = []; } catch (e) { panier = []; }
 let familleActive = 'all';
 let pp = { produit: null, format: 0, qte: 1 };
-const sm = { etape: 1, occasion: 'Anniversaire', parts: 8, base: 'Génoise vanille', saveur: 'Chocolat et praliné', decor: 'Classique', supplement: 0 };
 let commandesOuvertes = true;
 let messageFermeture = '';
 
@@ -431,45 +430,6 @@ async function envoyerCommande(e) {
 }
 
 /* =========================================================================
-   Sur mesure
-   ========================================================================= */
-const SM_ETAPES = ['Occasion', 'Parts', 'Base', 'Saveurs', 'Décor', 'Options'];
-function prixSurMesure() {
-  let p = sm.parts * 5.5 + sm.supplement;
-  if ($('#sm-sans-gluten').checked) p += 4;
-  return p;
-}
-function dessinerSurMesure() {
-  $('#sm-etapes').innerHTML = SM_ETAPES.map((n, i) => {
-    const k = i + 1, actif = k === sm.etape, fait = k < sm.etape;
-    return `<li class="flex-none"><button type="button" data-aller="${k}" ${actif ? 'aria-current="step"' : ''} class="flex items-center gap-2 rounded-full border px-3.5 py-2 ${actif ? 'bg-brand-900 border-brand-900 text-white' : fait ? 'bg-white border-brand-300 text-brand-900' : 'bg-white border-brand-200 text-brand-700'}"><span class="w-6 h-6 rounded-full grid place-items-center text-xs ${actif ? 'bg-white text-brand-950' : fait ? 'bg-brand-200 text-brand-950' : 'bg-brand-100'}">${fait ? icone('coche', 'w-3.5 h-3.5') : k}</span>${n}</button></li>`;
-  }).join('');
-  $$('.sm-etape').forEach(el => { el.hidden = Number(el.dataset.etape) !== sm.etape; });
-  $$('[data-groupe]').forEach(g => {
-    const val = sm[g.dataset.groupe];
-    $$('.choix', g).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.valeur === val)));
-  });
-  $('#sm-precedent').hidden = sm.etape === 1;
-  $('#sm-suivant').hidden = sm.etape === 6;
-  $('#sm-parts-valeur').textContent = `${sm.parts} parts`;
-  const options = [$('#sm-sans-gluten').checked && 'sans gluten', $('#sm-moins-sucre').checked && 'moins sucré'].filter(Boolean).join(', ');
-  const lignes = [['Occasion', sm.occasion], ['Parts', `${sm.parts} parts`], ['Base', sm.base], ['Saveurs', sm.saveur], ['Décor', sm.decor], ['Options', options || '—']];
-  $('#sm-resume').innerHTML = lignes.map(([k, v]) => `<div class="flex justify-between gap-4 border-b border-brand-800 pb-2"><dt class="text-brand-300">${k}</dt><dd class="font-semibold text-white text-right">${echapper(v)}</dd></div>`).join('');
-  const p = prixSurMesure();
-  $('#sm-prix').textContent = prix(p);
-  $('#sm-prix-part').textContent = `soit environ ${prix(p / sm.parts)} la part`;
-}
-function ajouterSurMesure() {
-  const options = [$('#sm-sans-gluten').checked && 'sans gluten', $('#sm-moins-sucre').checked && 'moins sucré'].filter(Boolean).join(', ');
-  const inscription = $('#sm-inscription').value.trim();
-  const consignes = $('#sm-consignes').value.trim();
-  const details = `Occasion : ${sm.occasion}. Base : ${sm.base}. Saveurs : ${sm.saveur}. Décor : ${sm.decor}.${inscription ? ` Inscription : « ${inscription} ».` : ''}${options ? ` Options : ${options}.` : ''}${consignes ? ` Consignes : ${consignes}` : ''}`;
-  ajouterAuPanier({ id: 'custom-' + Date.now(), title: `Gâteau sur mesure (${sm.parts} parts, ${sm.occasion.toLowerCase()})`, price: prixSurMesure(), image: '', produitId: null, taille: `${sm.parts} parts`, parts: sm.parts, details, delai: 168 });
-  toast('Gâteau sur mesure ajouté à votre demande');
-  ouvrir('panier');
-}
-
-/* =========================================================================
    Infos du site (infos.txt, ou espace de gestion)
    ========================================================================= */
 const INFOS = {};
@@ -568,7 +528,6 @@ document.addEventListener('DOMContentLoaded', () => {
   dessinerAccueil();
   dessinerCarte();
   dessinerPanier();
-  dessinerSurMesure();
   afficherRoute(false);
 
   window.addEventListener('hashchange', () => afficherRoute(true));
@@ -596,21 +555,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (l) { const d = l.closest('[role="dialog"]'); if (d) { d.hidden = true; document.body.classList.remove('overflow-hidden'); } }
   });
   $('#form-commande').addEventListener('submit', envoyerCommande);
-
-  // Sur mesure
-  $$('[data-groupe]').forEach(g => g.addEventListener('click', e => {
-    const b = e.target.closest('.choix'); if (!b) return;
-    sm[g.dataset.groupe] = b.dataset.valeur;
-    if (g.dataset.groupe === 'decor') sm.supplement = Number(b.dataset.supplement) || 0;
-    dessinerSurMesure();
-  }));
-  $('#sm-etapes').addEventListener('click', e => { const b = e.target.closest('[data-aller]'); if (b) { sm.etape = Number(b.dataset.aller); dessinerSurMesure(); } });
-  $('#sm-suivant').addEventListener('click', () => { sm.etape = Math.min(6, sm.etape + 1); dessinerSurMesure(); });
-  $('#sm-precedent').addEventListener('click', () => { sm.etape = Math.max(1, sm.etape - 1); dessinerSurMesure(); });
-  $('#sm-parts').addEventListener('input', e => { sm.parts = Number(e.target.value) || 8; dessinerSurMesure(); });
-  $('#sm-sans-gluten').addEventListener('change', dessinerSurMesure);
-  $('#sm-moins-sucre').addEventListener('change', dessinerSurMesure);
-  $('#sm-ajouter').addEventListener('click', ajouterSurMesure);
 
   // Contact
   $('#form-contact').addEventListener('submit', e => {

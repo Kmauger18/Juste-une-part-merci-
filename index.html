@@ -31,7 +31,7 @@
   <link rel="preload" href="fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="img/photos/cit-4-960.webp" imagesrcset="img/photos/cit-4-480.webp 480w, img/photos/cit-4-960.webp 960w" imagesizes="(min-width:1024px) 45vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.css?v=20261126">
+  <link rel="stylesheet" href="css/style.css?v=20261126b">
 
   <script type="application/ld+json">
   {
@@ -50,7 +50,8 @@
     "currenciesAccepted": "EUR"
   }
   </script>
-  <script src="js/site.js?v=20261126" defer></script>
+  <script src="js/site.js?v=20261126b" defer></script>
+  <script src="js/sur-mesure.js?v=20261126b" defer></script>
   <script type="module" src="js/site-en-ligne.js?v=20261126"></script>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -297,86 +298,98 @@
         <div class="max-w-2xl">
           <span class="surtitre">Sur mesure</span>
           <h1 class="mt-2 font-display text-4xl sm:text-5xl font-bold text-brand-950">Composez votre gâteau</h1>
-          <p class="mt-3 chapo">Six choix rapides pour une première estimation. Élodie vous recontacte pour valider les détails et le prix définitif. Prévoyez une semaine de délai, davantage pour un mariage.</p>
+          <p class="mt-3 chapo">Choisissez la forme, les saveurs, l'enrobage et le décor : l'aperçu change en direct. Élodie vous recontacte ensuite pour valider les détails et le prix. Prévoyez une semaine de délai, davantage pour un mariage.</p>
         </div>
 
-        <ol id="sm-etapes" class="mt-8 flex gap-2 overflow-x-auto pb-1 text-sm font-semibold" aria-label="Étapes"></ol>
-
-        <div class="mt-6 grid lg:grid-cols-12 gap-6 items-start">
-          <div class="lg:col-span-8 carte p-5 sm:p-8">
-            <div data-etape="1" class="sm-etape">
-              <h2 class="font-display text-2xl font-bold text-brand-950">Pour quelle occasion ?</h2>
-              <div class="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-3" data-groupe="occasion">
-                <button type="button" class="choix" data-valeur="Anniversaire"><strong>Anniversaire</strong></button>
-                <button type="button" class="choix" data-valeur="Mariage / PACS"><strong>Mariage / PACS</strong></button>
-                <button type="button" class="choix" data-valeur="Baptême / naissance"><strong>Baptême / naissance</strong></button>
-                <button type="button" class="choix" data-valeur="Repas de famille"><strong>Repas de famille</strong></button>
-                <button type="button" class="choix" data-valeur="Fête d'entreprise"><strong>Fête d'entreprise</strong></button>
-                <button type="button" class="choix" data-valeur="Simple gourmandise"><strong>Simple gourmandise</strong></button>
+        <div class="mt-8 grid lg:grid-cols-12 gap-6 items-start">
+          <div class="contents lg:block lg:col-span-5 lg:order-2 lg:space-y-4">
+          <!-- Aperçu en direct (collé en haut de l'écran sur téléphone) -->
+          <div class="order-1 sticky top-[72px] z-20 lg:static" aria-labelledby="sm-apercu-titre" role="region">
+            <div class="carte overflow-hidden shadow-lg lg:shadow-none">
+              <div class="hidden sm:flex items-center justify-between px-5 pt-4">
+                <h2 id="sm-apercu-titre" class="font-display text-xl font-bold text-brand-950">Votre gâteau</h2>
+                <span class="pastille bg-brand-100 text-brand-800">Aperçu en direct</span>
               </div>
-            </div>
-            <div data-etape="2" class="sm-etape" hidden>
-              <h2 class="font-display text-2xl font-bold text-brand-950">Combien de parts ?</h2>
-              <label for="sm-parts" class="mt-5 block text-brand-800">Nombre de parts : <strong id="sm-parts-valeur" class="text-terracotta-dark text-lg">8 parts</strong></label>
-              <input type="range" id="sm-parts" min="6" max="60" step="2" value="8" class="mt-3 w-full accent-[#9E3F23]">
-              <div class="mt-1 flex justify-between text-xs text-brand-700"><span>6</span><span>30</span><span>60</span></div>
-              <p class="mt-4 text-sm text-brand-700">Au-delà de 60 parts (pièce montée, grand buffet), précisez-le dans votre message à l'étape 6.</p>
-            </div>
-            <div data-etape="3" class="sm-etape" hidden>
-              <h2 class="font-display text-2xl font-bold text-brand-950">Quelle base ?</h2>
-              <div class="mt-5 grid sm:grid-cols-2 gap-3" data-groupe="base">
-                <button type="button" class="choix" data-valeur="Génoise vanille"><strong>Génoise vanille</strong><span class="text-sm text-brand-700">Moelleuse et légère, idéale pour les gâteaux à étages.</span></button>
-                <button type="button" class="choix" data-valeur="Biscuit chocolat"><strong>Biscuit chocolat</strong><span class="text-sm text-brand-700">Fondant, pour les amateurs de chocolat.</span></button>
-                <button type="button" class="choix" data-valeur="Pâte sablée"><strong>Pâte sablée</strong><span class="text-sm text-brand-700">Croustillante, pour une grande tarte ou des tartelettes.</span></button>
-                <button type="button" class="choix" data-valeur="Dacquoise noisette"><strong>Dacquoise noisette</strong><span class="text-sm text-brand-700">Biscuit aux noisettes, sans farine.</span></button>
+              <div id="sm-apercu" class="px-2 sm:px-4" role="img" aria-label="Aperçu du gâteau"></div>
+              <div class="flex gap-4 items-end justify-between px-4 sm:px-5 pb-3 sm:pb-5">
+                <div>
+                  <span class="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-brand-700">Estimation</span>
+                  <span id="sm-prix" class="block font-display text-2xl sm:text-3xl font-bold text-brand-950">0 €</span>
+                  <span id="sm-prix-part" class="block text-xs sm:text-sm text-brand-700"></span>
+                </div>
+                <div id="sm-coupe" class="hidden sm:block w-24" aria-hidden="true"></div>
+                <button type="button" data-sm-ajouter class="sm:hidden btn-primaire px-4">Ajouter</button>
               </div>
-            </div>
-            <div data-etape="4" class="sm-etape" hidden>
-              <h2 class="font-display text-2xl font-bold text-brand-950">Quelles saveurs ?</h2>
-              <div class="mt-5 grid sm:grid-cols-2 gap-3" data-groupe="saveur">
-                <button type="button" class="choix" data-valeur="Chocolat et praliné"><strong>Chocolat et praliné</strong><span class="text-sm text-brand-700">Mousse chocolat noir, praliné noisette.</span></button>
-                <button type="button" class="choix" data-valeur="Vanille et caramel"><strong>Vanille et caramel</strong><span class="text-sm text-brand-700">Crème vanille, caramel au beurre salé.</span></button>
-                <button type="button" class="choix" data-valeur="Citron"><strong>Citron</strong><span class="text-sm text-brand-700">Crémeux citron, acidulé et frais.</span></button>
-                <button type="button" class="choix" data-valeur="Fruits rouges"><strong>Fruits rouges</strong><span class="text-sm text-brand-700">Fruits de saison et crème légère.</span></button>
-              </div>
-            </div>
-            <div data-etape="5" class="sm-etape" hidden>
-              <h2 class="font-display text-2xl font-bold text-brand-950">Quelle décoration ?</h2>
-              <div class="mt-5 grid sm:grid-cols-3 gap-3" data-groupe="decor">
-                <button type="button" class="choix" data-valeur="Classique" data-supplement="0"><strong>Classique</strong><span class="text-sm text-brand-700">Pochage à la poche, simple et gourmand.</span></button>
-                <button type="button" class="choix" data-valeur="Glaçage miroir" data-supplement="6"><strong>Glaçage miroir</strong><span class="text-sm text-brand-700">Finition lisse et brillante. +6 €</span></button>
-                <button type="button" class="choix" data-valeur="Fleurs et décor de fête" data-supplement="10"><strong>Fleurs et décor de fête</strong><span class="text-sm text-brand-700">Fleurs, couleurs du thème. +10 €</span></button>
-              </div>
-              <label for="sm-inscription" class="mt-6 etiquette">Inscription sur le gâteau (facultatif)</label>
-              <input type="text" id="sm-inscription" maxlength="60" placeholder="ex. Joyeux anniversaire Léa" class="champ">
-            </div>
-            <div data-etape="6" class="sm-etape" hidden>
-              <h2 class="font-display text-2xl font-bold text-brand-950">Options et précisions</h2>
-              <div class="mt-5 space-y-2">
-                <label class="flex items-center gap-3 rounded-xl border border-brand-200 p-3.5 cursor-pointer hover:bg-brand-50"><input type="checkbox" id="sm-sans-gluten" class="w-5 h-5 accent-[#9E3F23]"><span class="font-semibold text-brand-950">Recette sans gluten <span class="font-normal text-brand-700">(+4 €)</span></span></label>
-                <label class="flex items-center gap-3 rounded-xl border border-brand-200 p-3.5 cursor-pointer hover:bg-brand-50"><input type="checkbox" id="sm-moins-sucre" class="w-5 h-5 accent-[#9E3F23]"><span class="font-semibold text-brand-950">Moins sucré</span></label>
-              </div>
-              <label for="sm-consignes" class="mt-6 etiquette">Message pour Élodie (facultatif)</label>
-              <textarea id="sm-consignes" rows="3" maxlength="800" placeholder="Thème, couleurs, contrainte de date, allergie…" class="champ"></textarea>
-            </div>
-
-            <div class="mt-8 pt-6 border-t border-brand-200 flex justify-between gap-3">
-              <button type="button" id="sm-precedent" class="btn-secondaire" hidden><svg class="ic" aria-hidden="true"><use href="img/icones.svg#fleche-gauche"/></svg> Précédent</button>
-              <button type="button" id="sm-suivant" class="btn-sombre ml-auto">Suivant <svg class="ic" aria-hidden="true"><use href="img/icones.svg#fleche-droite"/></svg></button>
             </div>
           </div>
+          <!-- Récapitulatif -->
+          <div class="order-3 rounded-2xl bg-brand-900 text-brand-50 p-5">
+            <h2 class="font-display text-lg font-bold text-white">Récapitulatif</h2>
+            <dl id="sm-resume" class="mt-3 space-y-2 text-sm"></dl>
+            <p id="sm-allergenes" class="mt-3 text-xs text-brand-200"></p>
+            <button type="button" id="sm-ajouter" data-sm-ajouter class="mt-4 w-full btn-clair py-3.5"><svg class="ic" aria-hidden="true"><use href="img/icones.svg#panier"/></svg> Ajouter à ma demande</button>
+            <p class="mt-3 text-xs text-brand-300">Aperçu et prix indicatifs : le rendu et le montant définitifs sont confirmés par Élodie avant la préparation.</p>
+          </div>
+          </div>
 
-          <aside class="lg:col-span-4 lg:sticky lg:top-28 rounded-2xl bg-brand-900 text-brand-50 p-6" aria-labelledby="sm-resume-titre">
-            <h2 id="sm-resume-titre" class="font-display text-xl font-bold text-white">Votre gâteau</h2>
-            <dl id="sm-resume" class="mt-4 space-y-2.5 text-sm"></dl>
-            <div class="mt-5 rounded-xl bg-brand-950 p-4 text-center">
-              <span class="block text-xs uppercase tracking-wider text-brand-300 font-semibold">Estimation</span>
-              <span id="sm-prix" class="block font-display text-3xl font-bold text-gold-light">0 €</span>
-              <span id="sm-prix-part" class="block text-xs text-brand-300"></span>
+          <!-- Choix -->
+          <div class="order-2 lg:order-1 lg:col-span-7">
+            <ol id="sm-etapes" class="flex flex-wrap gap-2 text-sm font-semibold" aria-label="Étapes"></ol>
+            <div class="mt-3 carte p-5 sm:p-7">
+              <div data-etape="1" class="sm-etape">
+                <h2 class="font-display text-2xl font-bold text-brand-950">Pour quelle occasion ?</h2>
+                <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5" data-groupe="occasion"></div>
+              </div>
+              <div data-etape="2" class="sm-etape" hidden>
+                <h2 class="font-display text-2xl font-bold text-brand-950">Forme et taille</h2>
+                <h3 class="mt-5 etiquette">Forme</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" data-groupe="forme"></div>
+                <h3 class="mt-6 etiquette">Nombre d'étages</h3>
+                <div class="grid grid-cols-3 gap-2.5" data-groupe="etages"></div>
+                <label for="sm-parts" class="mt-6 block text-brand-800 font-semibold">Nombre de parts : <strong id="sm-parts-valeur" class="text-terracotta-dark text-lg">8 parts</strong></label>
+                <input type="range" id="sm-parts" min="6" max="30" step="2" value="8" class="mt-3 w-full accent-[#9E3F23]">
+                <div class="mt-1 flex justify-between text-xs text-brand-700"><span id="sm-parts-min">6</span><span id="sm-parts-max">30</span></div>
+              </div>
+              <div data-etape="3" class="sm-etape" hidden>
+                <h2 class="font-display text-2xl font-bold text-brand-950">Biscuit et garniture</h2>
+                <h3 class="mt-5 etiquette">Biscuit</h3>
+                <div class="grid sm:grid-cols-2 gap-2.5" data-groupe="biscuit"></div>
+                <h3 class="mt-6 etiquette">Garniture</h3>
+                <div class="grid sm:grid-cols-2 gap-2.5" data-groupe="garniture"></div>
+              </div>
+              <div data-etape="4" class="sm-etape" hidden>
+                <h2 class="font-display text-2xl font-bold text-brand-950">Enrobage</h2>
+                <div class="mt-5 grid sm:grid-cols-2 gap-2.5" data-groupe="enrobage"></div>
+                <div id="sm-couleurs-bloc">
+                  <h3 class="mt-6 etiquette">Couleur</h3>
+                  <div class="flex flex-wrap gap-2.5" data-groupe="couleur"></div>
+                </div>
+              </div>
+              <div data-etape="5" class="sm-etape" hidden>
+                <h2 class="font-display text-2xl font-bold text-brand-950">Décor</h2>
+                <p class="mt-1 text-sm text-brand-700">Plusieurs choix possibles.</p>
+                <div class="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-2.5" data-groupe="decors" data-multiple></div>
+              </div>
+              <div data-etape="6" class="sm-etape" hidden>
+                <h2 class="font-display text-2xl font-bold text-brand-950">Message et options</h2>
+                <label for="sm-inscription" class="mt-5 etiquette">Inscription sur le gâteau (facultatif)</label>
+                <input type="text" id="sm-inscription" maxlength="24" placeholder="ex. Joyeux anniversaire Léa" class="champ">
+                <p class="mt-1 text-xs text-brand-700">24 caractères au plus. Avec le décor « Topper », elle s'affiche en lettres au-dessus du gâteau.</p>
+                <div class="mt-5 space-y-2">
+                  <label class="flex items-center gap-3 rounded-xl border border-brand-200 p-3.5 cursor-pointer hover:bg-brand-50"><input type="checkbox" id="sm-sans-gluten" class="w-5 h-5 accent-[#9E3F23]"><span class="font-semibold text-brand-950">Recette sans gluten <span class="font-normal text-brand-700">(+4 €)</span></span></label>
+                  <label class="flex items-center gap-3 rounded-xl border border-brand-200 p-3.5 cursor-pointer hover:bg-brand-50"><input type="checkbox" id="sm-sans-noix" class="w-5 h-5 accent-[#9E3F23]"><span class="font-semibold text-brand-950">Sans fruits à coque</span></label>
+                  <label class="flex items-center gap-3 rounded-xl border border-brand-200 p-3.5 cursor-pointer hover:bg-brand-50"><input type="checkbox" id="sm-moins-sucre" class="w-5 h-5 accent-[#9E3F23]"><span class="font-semibold text-brand-950">Moins sucré</span></label>
+                </div>
+                <label for="sm-consignes" class="mt-6 etiquette">Message pour Élodie (facultatif)</label>
+                <textarea id="sm-consignes" rows="3" maxlength="800" placeholder="Thème, couleurs, date, allergie, photo d'inspiration à envoyer…" class="champ"></textarea>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-brand-200 flex justify-between gap-3">
+                <button type="button" id="sm-precedent" class="btn-secondaire" hidden><svg class="ic" aria-hidden="true"><use href="img/icones.svg#fleche-gauche"/></svg> Précédent</button>
+                <button type="button" id="sm-suivant" class="btn-sombre ml-auto">Suivant <svg class="ic" aria-hidden="true"><use href="img/icones.svg#fleche-droite"/></svg></button>
+              </div>
             </div>
-            <button type="button" id="sm-ajouter" class="mt-5 w-full btn-clair py-3.5"><svg class="ic" aria-hidden="true"><use href="img/icones.svg#panier"/></svg> Ajouter à ma demande</button>
-            <p class="mt-3 text-xs text-brand-300">Prix indicatif : le montant définitif est confirmé par Élodie avant la préparation.</p>
-          </aside>
+          </div>
         </div>
       </section>
     </div>

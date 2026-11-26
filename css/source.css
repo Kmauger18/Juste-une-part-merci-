@@ -68,6 +68,9 @@
   .choix[aria-pressed="true"], .choix[aria-checked="true"] { @apply border-terracotta-dark bg-brand-50; }
   .choix[aria-pressed="true"]::after, .choix[aria-checked="true"]::after { content: ''; position: absolute; top: 10px; right: 10px; width: 10px; height: 10px; border-radius: 50%; background: #9E3F23; }
 
+  .choix-couleur { @apply flex flex-col items-center rounded-xl p-1.5 border-2 border-transparent; min-width: 64px; }
+  .choix-couleur[aria-pressed="true"] { @apply border-terracotta-dark bg-brand-50; }
+
   /* Fenêtres */
   .voile { @apply fixed inset-0 bg-brand-950/60; }
   .barre-defilement::-webkit-scrollbar { width: 6px; }
